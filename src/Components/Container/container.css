@@ -1,0 +1,125 @@
+@import url('../Sidebar/sidebar.css');
+html{
+  height:100%;
+  width: 100%;
+}
+body{
+  height:100%;
+  width: 100%;
+}
+.container{
+  
+  background-color: #F7F7F8;
+  display:grid; 
+  grid-template-areas: 
+  'p-sidebar p-navbar p-navbar p-navbar p-navbar p-navbar p-navbar'
+  'p-sidebar p-container p-container p-container p-container p-container p-container'
+  'p-sidebar p-container p-container p-container p-container p-container p-container'
+  'p-sidebar p-container p-container p-container p-container p-container p-container'
+  'p-sidebar p-container p-container p-container p-container p-container p-container'
+  
+}
+
+.p-container{
+ grid-area: p-container;
+  background-color: skyblue;
+  background-color: #F7F7F8;
+  /*padding: 1% 5% 3% 5%;*/
+  padding-left: 5%;
+  margin-top: 1%;
+  padding-right: 5%;
+  padding-bottom: 3%; 
+  overflow-y: scroll;
+  height: 85vh;
+  min-height: 700px;
+  position: relative;
+}
+
+
+.p-sidebar{
+  grid-area: p-sidebar;
+  z-index: 25;
+  width: 310px;
+  height: 100vh;
+  min-height: 950px;
+  background-color:#00509f;
+}
+
+.p-navbar{
+  grid-area: p-navbar;
+  justify-items: center;
+
+  /* background-image: url('../../Imagenes/Patron-navbar.png'); */
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: left bottom;
+  width: 100%;
+  height: 80px;
+}
+
+.p-sidebar-expanded {
+  min-width: 310px;
+  
+}
+
+.p-sidebar-compressed {
+  width: 80px;
+
+}
+
+@media (max-width: 1280px) {
+    
+  .p-container{
+    overflow-x: scroll;
+    padding: 1% 5% 3% 5%;
+   /*  width: calc(100vw - 80px); */
+  }
+
+  .p-sidebar{
+    width: 80px;
+  }
+}
+
+@media (max-width: 800px) {
+
+
+  .p-sidebar-expanded {
+    position: absolute !important;
+  }
+
+  .p-container{
+    padding-left: 5%;
+  }
+}
+
+@media (max-width: 550px){
+  .p-sidebar-expanded {
+    position: absolute !important;
+    grid-area: p-sidebar-expanded;
+    min-width: 92%;
+    min-height: 100%;
+    height: 1100px;
+  }
+  .sidebar-logo {
+    display: grid;
+    justify-content: center;
+    margin-top: 90px;
+    margin-bottom: 30px;
+    margin-right: 25%;
+}
+
+
+.sidebar-lista-opcion {
+  list-style: none;
+  margin-bottom: 10px;
+  padding-top: 4%;
+  transition: .15s ease;
+}
+
+.sidebar-logo-compressed {
+  margin-top: 120px;
+  margin-bottom: 30px;
+}
+
+
+}

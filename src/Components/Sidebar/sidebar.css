@@ -1,0 +1,188 @@
+@import url('../../Page/Maquinas/pageMaquinas.css');
+
+.container {
+  height: 100%;
+  width: 100%;
+}
+
+.container-sidebar {
+  height: 100%;
+  position: relative;
+}
+.cerrar-sesion-expanded {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding-left: 0.5 rem;
+  
+}
+.cerrar-sesion-compressed {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  
+}
+
+.sidebar {
+  width: 250px; /* Ancho inicial del sidebar */
+  transition: width 0.3s ease; /* Transición suave para el ancho */
+  background-color: #333; /* Color de fondo del sidebar */
+}
+
+.sidebar.collapsed {
+  width: 80px; /* Ancho reducido del sidebar */
+}
+
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 100px;
+  margin-bottom: 50px;
+  margin-left: 30px;
+  margin-right: 30px;
+  position: relative; /* Añadido para posicionar el botón correctamente */
+}
+
+
+
+.sidebar-logo-compressed {
+  margin: 120px 20px 50px;
+}
+
+.logo-img-compressed {
+  display: none;
+}
+
+.logo-responsive-compressed {
+  display: block !important;
+}
+
+.slidebar-icons-compressed {
+  font-size: 24px;
+}
+
+.sliderbar-text-compressed {
+  display: none;
+}
+
+.sidebar-lista-compressed {
+  margin: 15px 20px;
+}
+
+.sidebar-lista-ul-compressed {
+  padding: 0 0px;
+
+  
+}
+
+.sidebar-lista-opcion-compressed {
+  padding-top: 16%;
+  
+}
+
+.sidebar-logo img {
+  width: 100%;
+  justify-content: center;
+}
+
+.sidebar-lista {
+  font-family: Poppins, sans-serif;
+}
+
+.sidebar-lista-ul {
+  list-style: none;
+  color: #ffffff;
+  font-size: 15px;
+  padding-right: 4%;
+  width: 120%;
+
+}
+
+.sidebar-lista-opcion {
+  list-style: none;
+  padding-top: 4%;
+  padding-bottom:4%;
+  padding-left: 4%;
+  
+  transition: .4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  flex:1;
+  justify-content: start;
+  align-items: center;
+  border-radius: 10px;
+}
+.sidebar-lista-opcion2 {
+  padding: 15%;
+  transition: .4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  flex:1;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+}
+
+.sidebar-lista-opcion:hover {
+  cursor: pointer;
+  color: #71D3FC;
+  font-size: 18px;
+  transition: .4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.sidebar-logo > .logo-responsive {
+  display: none;
+}
+.cerrar-sesion {
+  padding-left: 20%;
+}
+
+.sidebar-lista-opcion .sliderbar-text-expanded {
+  font-size: 15px;
+  font-weight: semibold;
+
+}
+
+/* Estilos para el botón de alternancia */
+.toggle-button {
+  position: absolute;
+  top: 200px; /* Ajusta la posición vertical según sea necesario */
+  right: -30px; /* Distancia inicial de 10px desde el borde derecho del sidebar */
+  z-index: 202;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color:#00509f;
+  border-radius: 50%;
+  border: 5px solid white;
+  width: 50px;
+  height: 50px;
+  transition: right 0.3s ease; /* Transición para ajustar la posición del botón */
+}
+
+
+.sidebar.collapsed .toggle-button {
+  right: 10px; /* Ajusta la posición del botón cuando el sidebar está comprimido */
+}
+
+.sidebar-lista-opcion > .slidebar-icons-compressed:hover {
+  cursor: pointer;
+  color: #71D3FC;
+  font-size: 25px;
+  
+  transition: .25s cubic-bezier(0.4, 0, 1, 1);
+
+}
+
+@media (min-height: 1100px) {
+  .sidebar-lista-opcion-compressed {
+    list-style: none;
+    padding-top: 5%;
+
+  }
+  
+  .sidebar-lista-opcion-expanded {
+    list-style: none;
+    padding-top: 5%;
+  }
+}

@@ -1,0 +1,12 @@
+@media (max-width: 768px) {
+    .container-descripcion-modal-locales-dialog {
+      /*width: 100vw !important;*/
+      background-color: #F7F7F8 !important;
+    }
+    .container-descripcion-modal-locales {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: flex-end !important;
+    }
+  
+  }

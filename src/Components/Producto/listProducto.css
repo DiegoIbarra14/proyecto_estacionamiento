@@ -1,0 +1,8 @@
+@media screen and (max-width: 960px){
+    .card-table-producto .p-datatable .p-datatable-tbody > tr > .column-edit {
+        padding: 9.17px 2rem;
+    }  
+    .card-table-producto .p-datatable .p-datatable-tbody > tr > .column-delete {
+        padding: 10.17px 2rem;
+    }  
+}

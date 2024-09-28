@@ -1,0 +1,268 @@
+.container-descripcion {
+    display: grid;
+    gap: 5%;
+    grid-template-columns: 65% 30%;
+  }
+  .button {
+    border-radius: 8px;
+    height: 40px;
+    width: 200px;
+    background-color: white;
+    border: none;
+    color: #312d3b;
+    font-size: 15px;
+  }
+  .button:hover {
+    cursor: pointer;
+    background-color: #312d3b;
+    color: white;
+  }
+  .container-titulo-table {
+    color: #312d3b;
+  }
+  .p-dialog-header {
+    color: #312d3b !important;
+  }
+  .icon-create-proveedor {
+    margin-right: 10px;
+    font-size: 20px;
+  }
+  /*.p-dialog-footer {
+  }*/
+  .container-search {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .lista-h1 {
+    color: #312d3b !important;
+  }
+  .flex {
+    justify-items: end !important;
+  }
+  .p-datatable-header {
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .p-datatable-wrapper {
+    padding-left: 5px;
+    overflow-x: scroll;
+  }
+  
+  .table-trabajadores > .p-datatable > .p-datatable-wrapper > .p-datatable-table{ 
+    width: 100%;
+    min-width: 1000px;
+    
+  }
+
+  .header-trabajadores > .container-descripcion > .container-descripcion-table > p {
+    margin-block: 0 2rem;
+  }
+
+  .header-trabajadores > .container-descripcion > .container-descripcion-button-add {
+    text-align: end;
+  }
+  
+  .header-trabajadores > .container-descripcion{
+    gap: 5%;
+    grid-template-columns: 65% 30%;
+  }
+
+  .last-field{
+    margin: 0;
+  }
+
+  .p-dialog-footer{
+    padding: 1rem 1.5rem 1.5rem 1.5rem !important;
+  }
+  
+  .column-typeworker{
+    width: 15%;
+  }
+
+  .header-trabajadores > .container-descripcion > .container-descripcion-table > p {
+    margin-block: 0 2rem;
+  }
+
+  @media (max-width: 1280px) {
+    /*tabla*/
+    .table-trabajadores > .p-datatable > .p-datatable-wrapper {
+      padding: 0;
+      
+    }
+  
+    .table-trabajadores > .p-datatable > .p-datatable-wrapper > .p-datatable-table{ 
+      width: 100%;
+    }
+  
+    .table-trabajadores .colum {
+      padding: 1rem 0.2rem; 
+    }
+    
+
+    .table-trabajadores .column-type, .column-id {
+      width: 12%;
+    }
+    .table-trabajadores .column-salary, .column-hours, .column-edit, .colum-delete {
+      width: 8%;
+    }
+    /* .table-trabajadores .lista-h1 {
+      font-size: 1.7em;
+    } */
+
+    
+  }
+
+  @media (max-width: 960px) {
+
+    .table-trabajadores > .p-datatable > .p-datatable-wrapper > .p-datatable-table{ 
+      min-width: 100%;
+    }
+
+    .header-trabajadores > .container-descripcion > .container-descripcion-table > p {
+      margin-block: 0 1rem;
+    }
+    .header-trabajadores > .container-descripcion{
+      display: block;
+      margin-bottom: 15px;
+    }
+
+    .header-trabajadores .container-titulo-table {
+      font-size: 1.8rem;
+    }
+    
+    .table-trabajadores .p-datatable-header {
+      display: block;
+      padding: 0 1.6rem 1.6rem !important;
+      margin: 0/* .5rem 0 15px*/;  
+    }
+
+    .table-trabajadores .p-datatable-header .p-input-icon-left{
+      width: 103%;
+    }
+
+    .table-trabajadores .p-datatable-header .p-input-icon-left input{
+      width: 101%;
+    }
+    .table-trabajadores .p-datatable-tbody tr{
+      background-color: transparent;
+    }
+
+    .table-trabajadores .p-datatable-tbody .column{
+      text-align: end;
+      gap: 50px;
+      border-bottom: 2px dotted #e2e2e2 !important;
+      padding: 1rem 2rem;
+      background-color: #fff;
+    }
+
+    .table-trabajadores .p-datatable-tbody .column .p-button{
+      width:35px;
+      height:35px;
+    }
+
+    .table-trabajadores .p-datatable-tbody .column-type{
+      margin-top: 15px;      
+    }
+    .table-trabajadores .p-datatable-tbody .column-edit{
+      padding: 10px 2rem;
+    }
+    .table-trabajadores .p-datatable-tbody .column-delete{
+      border-bottom: 0px !important;
+      padding: 9px 2rem;
+    }
+
+    .column .p-column-title {
+      text-align: start;
+    }
+    
+    .table-trabajadores .p-paginator{
+      margin-top: 15px;
+    } 
+
+    .table-trabajadores .p-paginator > .p-paginator-left-content {
+      position: absolute;
+      left: 15px;
+      bottom: 65px;
+      z-index: 1;
+    } 
+
+    .table-trabajadores .p-paginator > .p-paginator-current {
+      width: 100%;
+    } 
+
+    .table-trabajadores .p-paginator > .p-dropdown {
+      position: absolute;
+      bottom: 15px;
+      right: 77px;
+    } 
+    
+    .table-trabajadores .p-paginator > .p-paginator-right-content{
+      position: absolute;
+      right: 15px;
+      bottom: 15px;
+
+    }
+  }
+
+  @media (max-width: 700px) {
+    .table-trabajadores .p-paginator {
+      padding-bottom: 80px;
+    }  
+    
+    .table-trabajadores .p-paginator > .p-paginator-left-content {
+      bottom: 135px;
+    }   
+    
+    .table-trabajadores .p-paginator > .p-dropdown {
+      right: auto;
+    }  
+  }
+
+  @media (max-width: 600px){
+    .p-container > .p-toast {
+      width: 70vw;
+    }
+  }
+
+  @media (max-width: 470px) {
+    .table-trabajadores .p-datatable-tbody .column{
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      text-align: left !important;
+    }
+
+    .table-trabajadores .p-datatable-tbody .column > .p-column-title{
+      width: 100%;
+    }
+
+    .table-trabajadores .lista-h1 {
+      font-size: 1.5rem;
+    }
+
+    .table-trabajadores .p-paginator > .p-paginator-current {
+      margin: 0.5rem 2.5rem 1.5rem;
+      text-align: center;
+      line-height: 1.5
+    }
+
+    .table-trabajadores .p-paginator > .p-paginator-left-content {
+      bottom: calc(135px + 1.5rem);
+    }
+  } 
+  @media (max-width: 407px) {
+    .table-trabajadores .p-paginator > .p-paginator-left-content {
+      bottom: calc(190px + 1.5rem);
+      left: 5px;
+    }
+  }
+
+  @media (max-width: 337px) {
+    .table-trabajadores .p-paginator-current {
+      height: 70px;
+    }
+    .table-trabajadores .p-paginator > .p-paginator-left-content {
+      bottom: calc(195px + 1.5rem);
+    }
+  }

@@ -1,0 +1,62 @@
+
+.container-descripcion {
+    display: grid;
+    gap: 5%;
+    grid-template-columns: 65% 30%;
+  }
+  .button {
+    border-radius: 8px;
+    height: 40px;
+    width: 200px;
+    background-color: white;
+    border: none;
+    color: #312d3b;
+    font-size: 15px;
+  }
+  .button:hover {
+    cursor: pointer;
+    background-color: #312d3b;
+    color: white;
+  }
+  .container-titulo-table {
+    color: #312d3b;
+  }
+  .p-dialog-header {
+    color: #312d3b !important;
+  }
+  .icon-create-proveedor {
+    margin-right: 10px;
+    font-size: 20px;
+  }
+/*   .p-dialog-footer {
+  } */
+  .container-search {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .lista-h1 {
+    color: #312d3b !important;
+  }
+  .flex {
+    justify-items: end !important;
+  }
+  .p-datatable-header {
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .p-datatable-wrapper {
+    padding-left: 5px;
+  }
+  
+  @media screen and (max-width: 960px){
+    .card-table-servicio .p-datatable .p-datatable-tbody > tr > .column-edit {
+      padding: 8.5px 2rem;
+    }  
+    .card-table-servicio .p-datatable .p-datatable-tbody > tr > .column-delete {
+      padding: 9.5px 2rem;
+    }  
+
+
+  }

@@ -1,0 +1,33 @@
+.titulo-table .titulo-table-h1 {
+  padding-top: 2%;
+  margin-left: 12%;
+  margin-bottom: 2%;
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.p-datatable-header {
+  background-color: white !important;
+  /*font-family: 'Poppins', sans-serif;*/
+  margin-left: -5%;
+
+  justify-content: space-between;
+  font-size: 20px !important;
+  width: 100%;
+}
+
+/*Scrool porque los datos de la tabla son largos*/
+.table-proveedores .p-datatable-wrapper{
+  overflow-x:scroll;
+}
+
+.table{
+  margin-left: -5%;
+}
+
+@media screen and (max-width: 1600px){
+  .table,
+  .p-datatable-header{
+   margin-left: 5px;
+  }
+ }

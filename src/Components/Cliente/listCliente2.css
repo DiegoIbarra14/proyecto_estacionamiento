@@ -1,0 +1,29 @@
+@media (max-width: 960px) {
+  .card-table-cliente .p-datatable{
+    background-color: transparent;
+  }
+}
+
+@media (max-width: 468px) {
+    .container-descripcion {
+      display: flex !important; 
+      flex-direction: column !important;
+      align-items: flex-end !important;
+      margin-bottom: 10px;
+    }
+  
+    .button-crear {
+      display: block;
+      margin: auto;
+      min-width: 100%;
+    }
+    /* .p-datatable .p-datatable-header {
+      display: flex !important;
+      flex-direction: column!important;
+      margin-bottom: 10px;
+    } */
+    .p-input-icon-left > .p-inputtext {
+      margin-bottom: 10px;
+    }
+    
+  }

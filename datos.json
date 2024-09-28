@@ -1,0 +1,186 @@
+{
+  "alquileres": [
+    {
+      "dni": "12345678",
+      "documento_alquiler": "URL_del_documento",
+      "espacio_id": 1,
+      "estado_pago": "completado",
+      "fecha_hora_fin": "2024-09-25T11:15:00",
+      "fecha_hora_inicio": "2024-09-25T10:00:00",
+      "id": 1,
+      "monto_aproximado": 12,
+      "monto_final": 14.5,
+      "nombre_completo": "Juan Pérez",
+      "placa_vehiculo": "ABC-123",
+      "usuario_id": 2
+    }
+  ],
+  "categorias": [
+    {
+      "descripcion": "Locales con tarifas accesibles",
+      "nombre": "Económico"
+    },
+    {
+      "descripcion": "Locales abiertos las 24 horas",
+      "nombre": "24 horas"
+    },
+    {
+      "descripcion": "Locales con vigilancia activa",
+      "nombre": "Estacionamiento con seguridad"
+    }
+  ],
+  "departamentos": [
+    {
+      "nombre": "Lima"
+    },
+    {
+      "nombre": "Cusco"
+    }
+  ],
+  "distritos": [
+    {
+      "departamento": "Lima",
+      "nombre": "Miraflores"
+    },
+    {
+      "departamento": "Lima",
+      "nombre": "San Isidro"
+    },
+    {
+      "departamento": "Cusco",
+      "nombre": "Cusco"
+    }
+  ],
+  "locales": [
+    {
+      "categoria": "Económico",
+      "departamento": "Lima",
+      "direccion": "Av. Larco 123, Miraflores",
+      "distrito": "Miraflores",
+      "espacios": [
+        {
+          "disponibilidad": true,
+          "estado": "disponible",
+          "id": 1,
+          "nombre": "Espacio 1"
+        },
+        {
+          "disponibilidad": false,
+          "estado": "ocupado",
+          "id": 2,
+          "nombre": "Espacio 2"
+        }
+      ],
+      "horario": {
+        "hora_fin": "22:00",
+        "hora_inicio": "08:00"
+      },
+      "id": 1,
+      "latitud": -12.123456,
+      "longitud": -77.123456,
+      "nombre": "Local 1",
+      "tarifario": {
+        "15_min": 5,
+        "1_hora": 12,
+        "30_min": 8,
+        "minutos_adicionales_mora": 1.5
+      }
+    }
+  ],
+  "roles": [
+    {
+      "accesos": [
+        {
+          "id": 1,
+          "nombre": "Ver locales",
+          "path": "/locales"
+        },
+        {
+          "id": 2,
+          "nombre": "Ver trabajadores",
+          "path": "/trabajadores"
+        },
+        {
+          "id": 3,
+          "nombre": "Ver alquileres",
+          "path": "/alquileres"
+        },
+        {
+          "id": 4,
+          "nombre": "Ver ganancias",
+          "path": "/ganancias"
+        }
+      ],
+      "id": 1,
+      "nombre": "Administrador"
+    },
+    {
+      "accesos": [
+        {
+          "id": 1,
+          "nombre": "Ver locales",
+          "path": "/locales"
+        },
+        {
+          "id": 3,
+          "nombre": "Ver alquileres",
+          "path": "/alquileres"
+        }
+      ],
+      "id": 2,
+      "nombre": "Empleado"
+    },
+    {
+      "accesos": [
+        {
+          "id": 1,
+          "nombre": "Ver locales",
+          "path": "/locales"
+        }
+      ],
+      "id": 3,
+      "nombre": "Cliente"
+    }
+  ],
+  "usuarios": [
+    {
+      "correo": "admin@example.com",
+      "nombre_usuario": "admin",
+      "persona": {
+        "apellidos": "García",
+        "dni": "87654321",
+        "nombres": "Ana",
+        "telefono": "987654322"
+      },
+      "rol_id": 1,
+      "tipo_usuario": 1,
+      "id": "tOzuo1E4IpZdqpMOvrOPhRLsRnv1"
+    },
+    {
+      "correo": "empleado1@example.com",
+      "id": 2,
+      "nombre_usuario": "empleado1",
+      "persona": {
+        "apellidos": "Pérez",
+        "dni": "12345679",
+        "nombres": "Carlos",
+        "telefono": "987654321"
+      },
+      "rol_id": 2,
+      "tipo_usuario": 1
+    },
+    {
+      "correo": "cliente1@example.com",
+      "id": 3,
+      "nombre_usuario": "cliente1",
+      "persona": {
+        "apellidos": "Pérez",
+        "dni": "12345678",
+        "nombres": "Juan",
+        "telefono": "987654320"
+      },
+      "rol_id": 3,
+      "tipo_usuario": 2
+    }
+  ]
+}

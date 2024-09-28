@@ -1,0 +1,257 @@
+.container-descripcion {
+  display: grid;
+  gap: 5%;
+  grid-template-columns: 65% 30%;
+}
+.button {
+  border-radius: 8px;
+  height: 40px;
+  width: 200px;
+  background-color: white;
+  border: none;
+  color: #312d3b;
+  font-size: 15px;
+}
+.button:hover {
+  cursor: pointer;
+  background-color: #312d3b;
+  color: white;
+}
+.container-titulo-table {
+  color: #312d3b;
+}
+.p-dialog-header {
+  color: #312d3b !important;
+}
+.icon-create-proveedor {
+  margin-right: 10px;
+  font-size: 20px;
+}
+/* .p-dialog-footer {
+} */
+.container-search {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.lista-h1 {
+  color: #312d3b !important;
+}
+.flex {
+  justify-items: end !important;
+}
+.p-datatable-header {
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+.p-datatable-wrapper {
+  padding-left: 5px;
+}
+.flex-crear-despacho {
+  display: flex;
+  justify-content: space-between;
+}
+.field-despacho {
+  padding-right: 20px;
+}
+.margin-despacho {
+  margin-bottom: 20px;
+}
+
+/*Modificacion del lider de equipo*/
+@media (max-width: 1280px) {
+  /*tabla*/
+  .card-table-proveedor .p-datatable > .p-datatable-wrapper {
+    padding: 0 ;
+  }
+  .card-table-proveedor .p-datatable > .p-datatable-wrapper > .p-datatable-table{ 
+    width: 1270px;
+  }
+  .colum {
+    padding: 1rem 0.2rem; 
+  }
+  /*.table-proveedor .column-type, .column-id {
+    width: 7%;
+  }
+  .table-proveedor .column-name{
+    width: 14%;
+  }
+  .table-proveedor .column-email{
+    width: 24%;
+  }
+  .table-proveedor .column-salary, .column-hours, .column-edit, .colum-delete {
+    width: 8%;
+  }*/
+  .lista-h1 {
+    font-size: 1.7em;
+  }
+}
+
+/*Nadia C. modificacion*/
+@media screen and (max-width: 960px){
+  .p-column-title{
+    display:block !important;
+  }
+  .p-datatable-table .p-datatable-tbody > tr > td{
+    display: block;
+  }
+
+  .card-table-proveedor .p-datatable > .p-datatable-wrapper > .p-datatable-table{ 
+    width: 100%;
+  }
+
+  
+  .container-titulo-table{
+    font-size: 1.8rem;
+  }
+  .p-input-icon-left{
+    width: 100%;
+  }
+  .flex{
+    margin: 0 0px 15px 0;
+  }
+  .p-input-icon-left input{
+    width: 101% !important;
+  }
+  .p-dialog{
+    margin: 15px;
+  }
+  .container-descripcion{
+    display: block !important;
+  }
+  .card-table-proveedor .p-datatable-header{
+    display: block !important;
+    padding: 0 23px 23px !important;
+  }
+
+  /**/
+  .card-table-locales .p-datatable-header{
+    display: block !important;
+    padding: 0 23px 23px !important;
+  }
+  .card-table-detalle-pedido .p-datatable-header{
+    display: block !important;
+    padding: 0 23px 23px !important;
+  }
+  .card-table-cliente .p-datatable-header{
+    display: block !important;
+    padding: 0 23px 23px !important;
+  }
+
+  .lista-h1{
+  font-size: 30px;
+  text-align: center;
+  }
+  .container-descripcion{
+    margin-bottom: 15px;
+  }
+  
+  /*dentro de la tabla estilo del lider de equipo*/
+  .column{
+    text-align: end !important;
+    gap: 50px !important;
+    border-bottom: 2px dotted #e2e2e2 !important;
+    padding: 1rem 2rem;
+    background-color: #fff;
+  }
+  .p-datatable-tbody tr{
+    background-color: transparent !important;
+  }
+  .column .p-button{
+    width: 35px !important;
+    height: 35px !important;
+  }
+  .p-datatable-tbody .column-delete{
+    border-bottom: 0px !important;
+  }
+
+  .p-datatable-tbody .column-estado{
+    border-bottom: 0px !important;
+  }
+
+  .p-paginator{
+    margin-top: 15px !important;
+  }
+  .p-paginator-current{
+    width: 100% !important;
+  }
+  .p-paginator-left-content{
+    position: absolute;
+    left: 15px;
+    bottom: 65px;
+    z-index: 1;
+  }
+  .p-paginator .p-dropdown {
+    position: absolute !important;
+    bottom: 15px;
+    right: 77px;
+  } 
+  .p-paginator-right-content{
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+  }
+}
+
+/*Modificacion del lider de equipo*/
+@media (max-width: 700px) {
+  .p-paginator {
+    padding-bottom: 80px;
+  }
+  .p-paginator-left-content {
+    bottom: 135px;
+  }   
+  .p-paginator .p-dropdown {
+    right: auto;
+  }  
+}
+
+@media (max-width: 600px){
+  .p-toast {
+    width: 70vw;
+  }
+}
+
+/*Modificacion del lider de equipo*/
+@media (max-width: 470px) {
+  .p-datatable-tbody .column{
+    flex-wrap: wrap !important;
+    gap: 0.5rem !important;
+    text-align: left !important;
+  }
+
+  .p-column-title{
+    width: 100%;
+  }
+
+  .lista-h1 {
+    font-size: 1.5rem;
+  }
+
+  .p-paginator-current {
+    margin: 0.5rem 2.5rem 1.5rem !important;
+    text-align: center;
+    line-height: 1.5 !important;
+  }
+
+  .p-paginator-left-content {
+    bottom: calc(135px + 1.5rem);
+  }
+} 
+/*Modificacion del lider de equipo*/
+@media (max-width: 407px) {
+  .p-paginator-left-content {
+    bottom: calc(190px + 1.5rem);
+    left: 5px;
+  }
+}
+/*Modificacion del lider de equipo*/
+@media (max-width: 337px) {
+  .p-paginator-current {
+    height: 70px;
+  }
+  .p-paginator-left-content {
+    bottom: calc(195px + 1.5rem);
+  }
+}

@@ -1,0 +1,15 @@
+.card-input-estadistica {
+  background-color: white;
+  padding: 20px;
+}
+.card-grafica-bar {
+  background-color: white;
+  padding: 20px;
+  width: 100%;
+}
+.section-buttons-estadistica {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+

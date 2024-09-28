@@ -1,0 +1,58 @@
+.contenedor-modal{
+    border: 1px solid rgb(138, 137, 137, 0.5);
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.p-field{
+    display: flex;
+    padding: 5px;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenedor-group label{
+    display: block;
+    width: 100%;
+}
+
+.contenedor-group input{
+    width: 100%;
+}
+
+.nombre{
+    width: 50%;
+}
+.archivo{
+    width: 30%;
+}
+
+.boton{
+    width: 20%;
+    margin-top: 15px;
+    text-align: center;
+}
+
+/* Estilizar las líneas divisorias verticales como punteadas */
+.mi-datatable .p-datatable-tbody > tr > td {
+    border-right: 1px dotted #333; /* Cambia el color y estilo aquí */
+}
+
+/* Mantener las líneas horizontales sólidas */
+.mi-datatable .p-datatable-tbody > tr > td {
+    border-bottom: 1px solid #ffffff; /* Cambia el color aquí */
+}
+
+/* Estilizar las líneas verticales del encabezado de la tabla */
+.mi-datatable .p-datatable-thead > tr > th {
+    border-right: 1px dotted #ffffff; /* Cambia el color y estilo aquí */
+}
+
+
+.contenedor-group.archivo {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  max-width: 300px;
+}

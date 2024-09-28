@@ -1,0 +1,146 @@
+.materias_primas_productos_terminados{
+  margin: 0 0 15px 0;
+}
+
+.p-selectbutton .p-button {
+  background: #ffffff;
+  border: 2px solid #04638A;
+  color: #04638A;
+}
+
+.p-selectbutton .p-button.p-highlight:hover {
+  background: #04638A;
+  border-color: #04638A;
+  color: #ffffff;
+}
+
+.p-selectbutton .p-button.p-highlight {
+  background: #04638A;
+  border-color: #04638A;
+  color: #ffffff;
+}
+
+.chart-control__filter__btn-filter{
+  background-color: #04638A!important;
+  border-color: transparent !important;
+  width: 200px;
+}
+
+.btn-download{
+  background-color:transparent;
+  color: #CED4DA;
+  border: 1.2px solid #CED4DA;
+}
+/* .caja__estadistica__root{
+
+}
+
+.caja__estadistica__root__contenedor{
+
+}
+
+.caja__estadistica__root__uno{
+
+}
+
+.caja__estadistica__root__uno__sub{
+
+} */
+
+.caja__estadistica__root__cajita{
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border-radius: 10px;
+  box-shadow: 1px 1px 5px rgb(198, 198, 198);
+}
+
+.caja__estadistica__root__sub__cajita__uno{
+  width: 30%;
+  position: relative;
+}
+
+.caja__estadistica__root__sub__cajita__dos{
+  width: 70%;
+  position: relative;
+}
+
+.caja__estadistica__root__sub__cajita__dos__sub{
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  display: flex;
+}
+
+@media (max-width: 1000px) {
+  .caja__estadistica__root__cajita{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .caja__estadistica__root__sub__cajita__uno{
+    width: 100%;
+  }
+  
+  .caja__estadistica__root__sub__cajita__dos{
+    width: 100%;
+  }
+}
+
+.chart-control__header{
+  text-align: center;
+}
+
+.chart__title{
+  margin: 5px;
+ color: #04638A;
+ font-weight: bold;
+ font-size: 20px;
+}
+
+.caja__estadistica__root__uno__button{
+  border: 2px solid #04638A;
+  width: 300px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  background-color: white;
+  margin: 15px 0;
+}
+
+.caja__estadistica__root__uno__button p{
+  margin: 5px;
+  color: #04638A;
+  font-weight: bold;
+  font-size: 17px;
+}
+
+.chart-control__filter{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: end;
+  margin-right: 5px;
+  gap: 3px;
+}
+
+/* .chart-control__filter__select{
+
+}
+
+.chart-control__filter__input{
+
+}
+
+.chart-control__filter__btn-filter{
+
+} */

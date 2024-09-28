@@ -1,0 +1,15 @@
+
+.dialog-detalle-almacen .p-dialog-content {
+    background-color: #f8f7f7;
+}
+
+.contador{
+    position:absolute;
+    left: 310px;
+    top: 25px;
+    border: 1px solid rgb(4, 100, 139, 0.5);
+    background-color:rgb(4, 100, 139) ;
+    color: white;
+    border-radius: 5px;
+    
+}

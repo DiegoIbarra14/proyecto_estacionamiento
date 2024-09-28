@@ -1,0 +1,20 @@
+.p-column-header-content{
+    display: flex;
+    justify-content: center;
+}
+
+.card-table-materia .p-datatable-header .flex {
+    padding-bottom: 0px !important;
+    padding-top: 0px !important;
+}
+
+.contador{
+    position:absolute;
+    left: 370px;
+    top: 0px;
+    border: 1px solid rgb(4, 100, 139, 0.5);
+    background-color:rgb(4, 100, 139) ;
+    color: white;
+    border-radius: 5px;
+
+}

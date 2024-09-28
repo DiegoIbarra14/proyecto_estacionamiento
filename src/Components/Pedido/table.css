@@ -1,0 +1,25 @@
+.titulo-table .titulo-table-h1 {
+  padding-top: 2%;
+  margin-left: 12%;
+  margin-bottom: 2%;
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.p-datatable-header {
+  background-color: white !important;
+  /*font-family: 'Poppins', sans-serif;*/
+  padding-left: 5% !important;
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px !important;
+}
+
+/*Scrool porque los datos de la tabla son largos*/
+.p-datatable-wrapper{
+  overflow-x:scroll;
+}
+
+.card-table-detalle-pedido {
+  background-color: white;
+}

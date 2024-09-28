@@ -1,0 +1,51 @@
+.section-button-add-ingrediente {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.section-input {
+  margin-top: 20px;
+}
+
+.title-crear-producto {
+  color: #312d3b;
+}
+
+.section-crear-producto {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.section-button-submits {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.p-dialog-enter-done > .p-dialog-content {
+  padding-bottom: 0px;
+}
+
+@media (max-width: 473px) {
+  .p-button-danger{
+    height: 100%;
+  }
+}
+@media (max-width: 440px) {
+  .section-button-submits .p-button {
+    display:block;
+  }
+}
+@media (max-width: 355px) {
+.section-button-submits .p-button-label{
+  font-size: 0;
+}
+}
+
+@media (max-width: 475px) {
+  .p-dialog-enter-done .p-dialog-footer .p-button {
+    width: 100%;
+    margin-top: 10px;
+  }
+}

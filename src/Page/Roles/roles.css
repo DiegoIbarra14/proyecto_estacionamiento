@@ -1,0 +1,85 @@
+.input-password input{
+    width: 100%;
+}
+.custom-dialog .p-dialog {
+    resize: none; /* Desactiva el redimensionamiento */
+    max-width: 100%; /* Asegura que no se redimensione más allá del tamaño */
+    max-height: 100%; /* Asegura que no se redimensione más allá del tamaño */
+}
+.table-container {
+    width: 50%;
+}
+  
+.popup-container {
+    width: 40vh;
+}
+.dropdown-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    width: 100%; /* Asegura que ocupe el ancho del contenedor sin dejar espacio en blanco */
+    
+  }
+ 
+
+  .button-show {
+    display: none; /* El botón no se mostrará ni ocupará espacio inicialmente */
+    opacity: 0;
+    transition: all 0.4s ease; /* Añade una transición suave */
+  }
+  
+  .button-visible {
+    display: inline-block; /* El botón se muestra cuando es visible */
+    opacity: 1;
+    transition: all 0.4s ease;
+  }
+  .custom-button {
+    background-color: #04638A; /* Color de fondo */
+    color: white; /* Color del texto */
+  }
+  
+  .custom-button:hover {
+    background-color: #0e7eaa; /* Color del fondo al hacer hover */
+  }
+  .form-container {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    width: 100%; /* Asegura que ocupe el ancho del contenedor sin dejar espacio en blanco */
+  }
+  .form-container-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    width: 100%; /* Asegura que ocupe el ancho del contenedor sin dejar espacio en blanco */
+  }
+ 
+@media (max-width: 960px) {
+    .table-container {
+        width: 70vh;
+    }
+  
+}
+
+  @media (max-width: 600px) {
+    .dropdown-container {
+      flex-direction: column; /* Cambia la orientación del dropdown */
+    }
+    .form-container {
+      flex-direction: column; /* Cambia la orientación del dropdown */
+    }
+    .form-container-buttons {
+      flex-direction: column; /* Cambia la orientación del dropdown */
+    }
+    .asignar-rol {
+      width:80%;
+    }
+ 
+  }
+
+
+
+            

@@ -1,0 +1,165 @@
+/* Estilos base */
+.container-descripcion-materia {
+  gap: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.p-container-headerPrima{
+  margin-left: -5%;
+}
+
+@media screen and (max-width: 1500px){
+ .p-container-headerPrima{
+  margin-left: 5px;
+ }
+}
+
+.p-container-headercliente{
+  margin-left: -5%;
+}
+
+@media screen and (max-width: 1700px){
+ .p-container-headercliente{
+  margin-left: 5px;
+ }
+}
+
+.container-descripcion-footer {
+  padding-top: 2%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.button {
+  border-radius: 8px;
+  height: 40px;
+  width: 100%;
+  max-width: 200px;
+  background-color: white;
+  border: none;
+  color: #312d3b;
+  font-size: 15px;
+  margin: 5px;
+}
+
+.button-excel {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center;
+  align-items: center;
+}
+
+.button:hover {
+  cursor: pointer;
+  background-color: #312d3b;
+  color: white;
+}
+
+.container-titulo-table {
+  color: #312d3b;
+}
+
+h1{
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 40px;
+}
+
+.container-descripcion > .container-descripcion-table > p {
+  margin-block: 0 2rem;
+}  
+
+.container-descripcion-button-add{
+  margin-right: 0 !important;
+}
+
+.p-dialog-header {
+  color: #312d3b !important;
+}
+
+.p-dialog .p-dialog-content {
+  padding: 0 1.5rem !important;
+}
+
+.icon-create-proveedor {
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+.container-search {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.lista-h1 {
+  color: #312d3b !important;
+}
+
+.flex {
+  justify-content: flex-end !important;
+}
+
+.p-datatable-header {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.p-datatable-wrapper {
+  padding-left: 5px;
+}
+
+.button-excel{
+  margin: 0;
+}
+.button-crear{
+  margin: 0;
+}
+@media screen and (max-width: 960px){
+  .container-descripcion > .container-descripcion-table > p {
+    margin-block: 0 1rem;
+  }  
+  .card-table-historial .p-datatable .p-datatable-tbody > tr > .column-delete {
+    padding: 9.5px 2rem;
+  }  
+  .material-proveedor > .p-dialog-content {
+    background: #f7f7f8;
+  }
+  .material-historial > .p-dialog-content{
+    background-color: #f7f7f8;
+  }
+}
+
+.cantidad-uni{
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+  margin-bottom: 20px;
+  align-items: center;
+  justify-content: center;
+}
+.cantidad-uni span{
+  background-color: #e9e7ee;
+  margin-top: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px!important;
+  width: 100px;
+
+}
+.field-cant-uni{
+  display: flex;
+  
+  height: 48px;
+  
+}

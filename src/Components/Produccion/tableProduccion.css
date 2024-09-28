@@ -1,0 +1,38 @@
+.titulo-table .titulo-table-h1 {
+    padding-top: 2%;
+    margin-left: 12%;
+    margin-bottom: 2%;
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.p-datatable-header {
+    background-color: white !important;
+    /*font-family: 'Poppins', sans-serif;*/
+    padding: 0 0 0 2% !important;
+
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px !important;
+}
+
+.m-0 {
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+
+@media screen and (max-width: 960px){
+    .table-produccion .column-state, .table-produccion .column-observations, .table-produccion .column-traceability{
+        padding: 9px 2rem !important;
+    }
+    .table-produccion .column-delete{
+        padding: 10px 2rem !important;
+    }
+}
+
+.p-tituloMMT {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

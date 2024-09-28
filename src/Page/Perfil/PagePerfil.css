@@ -1,0 +1,78 @@
+.content-photo .photo {
+    border: 4px solid rgb(203,223,231);
+    display: flex;
+    justify-content: center;
+    border-radius: 50%!important;
+    align-items: center;
+    width: 300px!important;
+    height: 300px;
+    overflow: hidden;
+}
+.photo-perfil button{
+    background-color: rgb(4,99,138)!important ;
+}
+
+.btn-change-password {
+    background-color: rgb(4,99,138)!important ;
+    height: 50px;
+
+}
+h3{
+    color:  rgb(4,99,138) ;
+    font-size: 1.4rem;
+    text-transform: capitalize;
+}
+.content-data-user label{
+    font-weight: 700;
+    font-size: 1.1rem;
+    color:  rgb(74, 70, 70) ;
+
+}
+.content-data-user p{
+    font-size: 1rem;
+    color: #6c6868;
+}
+.photo-perfil{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 0;
+    
+    
+}
+.content-photo{
+   
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+}
+.image-perfil {
+
+    width: 120%!important;
+    height: 120%!important;
+    object-fit: cover;
+    object-position: center;
+
+}
+.header-data-perfil{
+    display: flex;
+    gap: 10px;
+    padding: 0px;
+    align-items: center;
+    
+}
+
+.header-data-perfil i{
+    text-align: center;
+    display: flex;
+    align-items: center;
+    font-size: 1.4em;
+    color:  rgb(4,99,138) ;
+    font-weight: 900;
+}
+
+

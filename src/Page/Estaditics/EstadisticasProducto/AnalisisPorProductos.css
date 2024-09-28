@@ -1,0 +1,37 @@
+.analisis__por__producto {
+    display: flex;
+    height: 500px;
+    width: 100%;
+    height: auto;
+    gap: 20px;
+}
+
+.analisis__por__producto__sub__producto {
+    padding: 20px 10px 10px 10px;
+    background-color: white;
+    width: 100%;
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 1px 1px 5px rgb(198, 198, 198);
+    
+}
+
+.analisis__por__producto__contenedor__productos__comun {
+    margin: 10px;
+}
+
+.analisis__por__producto__contenedor__productos {
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    flex-wrap: wrap;
+}
+
+.analisis__por__producto__texto{
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    color: #006389;
+    font-size: 20px;
+    font-weight: bold;
+}

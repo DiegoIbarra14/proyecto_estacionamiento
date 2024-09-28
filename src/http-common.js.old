@@ -1,0 +1,112 @@
+import Axios from "axios";
+export default function Http() {
+  const URL = "http://34.237.228.37/nutrillis_back/public/api/";
+  //const URL = "http://localhost:8000/api/";
+  const sinAuth = Axios.create({
+    baseURL: "http://localhost:8000/api",
+    //baseUrl: "http://34.237.228.37/bregma_back/public/api",
+    headers: {
+      "Content-type": "application/json",
+      //Authorization: `Bearer ${token}`,
+    },
+  });
+  const getToken = () => {
+    const tokenString = JSON.parse(localStorage.getItem("token"));
+    return tokenString;
+  };
+  const deleteToken = () => {
+    localStorage.removeItem("token");
+  };
+  const setToken = (token) => {
+    localStorage.setItem("token", token);
+  };
+  const initAxiosInterceptors = () => {
+    Axios.interceptors.request.use((config) => {
+      console.log("hola");
+      const token = getToken();
+      if (token) {
+        console.log("paso");
+        config.headers.Authorization = `Bearer ${token}`;
+        console.log("token");
+        console.log(token);
+      }
+      return config;
+    });
+    Axios.interceptors.response.use(
+      (response) => response,
+      (err) => {
+        if (err) {
+          console.log("no paso");
+          return;
+        } else {
+          return Promise.refect(err);
+        }
+      }
+    );
+  };
+  const http = Axios.create({
+    //baseURL: "http://localhost:8000/api",
+    baseURL: "http://34.237.228.37/nutrillis_back/public/api",
+    headers: {
+      "Content-type": "application/json;charset=UTF-8",
+      Authorization: `Bearer ${getToken()}`,
+      withCredentials: false,
+      "Access-Control-Allow-Origin": "*",
+
+      //"Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+    },
+  });
+  const post = (api, json) => {
+    const send = Axios.post(`${URL}${api}`, json, {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${getToken()}`,
+      },
+    });
+    return send;
+  };
+  const put = (api, json) => {
+    const send = Axios.put(`${URL}${api}`, json, {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${getToken()}`,
+      },
+    });
+    return send;
+  };
+  const get = (api) => {
+    const send = Axios.get(`${URL}${api}`, {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${getToken()}`,
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+    return send;
+  };
+  const delet = (api) => {
+    const send = Axios.delete(`${URL}${api}`, {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${getToken()}`,
+      },
+    });
+    return send;
+  };
+  return {
+    http,
+    getToken,
+    deleteToken,
+    setToken,
+    initAxiosInterceptors,
+    sinAuth,
+    post,
+    get,
+    put,
+    delet,
+  };
+}

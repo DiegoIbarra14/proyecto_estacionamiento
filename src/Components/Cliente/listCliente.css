@@ -1,0 +1,42 @@
+.titulo-table .titulo-table-h1 {
+  padding-top: 2%;
+  margin-left: 12%;
+  margin-bottom: 2%;
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.p-datatable-header {
+  background-color: white !important;
+  /*font-family: 'Poppins', sans-serif;*/
+  padding-left: 0 !important;
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px !important;
+}
+.card-table-cliente .p-datatable{
+  margin-left: -5%;
+}
+
+@media screen and (max-width: 1500px){
+  .card-table-cliente .p-datatable{
+   margin-left: 5px;
+  }
+ }
+
+.card-table-cliente .p-datatable-header {
+  border-radius: 8px 8px 0 0;
+}
+
+.card-table-cliente .p-datatable {
+  border-radius: 8px 8px 0 0;
+}
+
+.card-table-cliente .p-datatable-header .flex {
+  padding-right: 10px;
+}
+
+/*Scrool porque los datos de la tabla son largos*/
+.card-table-cliente .p-datatable-wrapper{
+  overflow-x:scroll;
+}

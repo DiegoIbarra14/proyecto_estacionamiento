@@ -1,0 +1,24 @@
+.chart-title{
+    font-weight: 700;
+    color: #006389;
+    font-size: 20px;
+    text-align: center;
+
+
+}
+.chart-body{
+    display: flex;
+    
+    height: 450px;
+    height: auto!important;
+}
+.chart-merma-materia-prima{
+    
+    width: 100% !important;
+  
+}
+.chart-merma-materia-prima canvas{
+    height: 100%!important;
+    width: 100% !important;
+  
+}

@@ -1,0 +1,85 @@
+.spinner-container {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  margin: 20px auto;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border-top-color: #3498db;
+  animation: spin 1s linear infinite, pulse 1.5s ease-in-out infinite;
+}
+
+.confetti {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background-color: #f39c12; /* Color predeterminado, pero se actualizará con CSS variables */
+  border-radius: 50%;
+  animation: confetti 1s linear infinite;
+  opacity: 0;
+  transform-origin: center;
+}
+
+.confetti:nth-child(1) { background-color: #f39c12; --i: 0; }
+.confetti:nth-child(2) { background-color: #e74c3c; --i: 1; }
+.confetti:nth-child(3) { background-color: #2ecc71; --i: 2; }
+.confetti:nth-child(4) { background-color: #9b59b6; --i: 3; }
+.confetti:nth-child(5) { background-color: #1abc9c; --i: 4; }
+.confetti:nth-child(6) { background-color: #e67e22; --i: 5; }
+
+.confetti:nth-child(7) { background-color: #f39c12; --i: 0; }
+.confetti:nth-child(8) { background-color: #e74c3c; --i: 1; }
+.confetti:nth-child(9) { background-color: #2ecc71; --i: 2; }
+.confetti:nth-child(10) { background-color: #9b59b6; --i: 3; }
+.confetti:nth-child(11) { background-color: #1abc9c; --i: 4; }
+.confetti:nth-child(12) { background-color: #e67e22; --i: 5; }
+
+.confetti:nth-child(13) { background-color: #f39c12; --i: 0; }
+.confetti:nth-child(14) { background-color: #e74c3c; --i: 1; }
+.confetti:nth-child(15) { background-color: #2ecc71; --i: 2; }
+.confetti:nth-child(16) { background-color: #9b59b6; --i: 3; }
+.confetti:nth-child(17) { background-color: #1abc9c; --i: 4; }
+.confetti:nth-child(18) { background-color: #e67e22; --i: 5; }
+
+.confetti:nth-child(19) { background-color: #f39c12; --i: 0; }
+.confetti:nth-child(20) { background-color: #e74c3c; --i: 1; }
+.confetti:nth-child(21) { background-color: #2ecc71; --i: 2; }
+.confetti:nth-child(22) { background-color: #9b59b6; --i: 3; }
+.confetti:nth-child(23) { background-color: #1abc9c; --i: 4; }
+.confetti:nth-child(24) { background-color: #e67e22; --i: 5; }
+
+
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+    box-shadow: 0 0 20px 20px rgba(52, 152, 219, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(52, 152, 219, 0);
+  }
+}
+
+/* Animación de confeti */
+@keyframes confetti {
+  0% {
+    opacity: 1;
+    transform: rotate(calc(var(--i) * 45deg)) translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(calc(var(--i) * 45deg)) translateX(50px);
+  }
+}
+
+img {
+  width: 100%;
+  height: auto;
+}

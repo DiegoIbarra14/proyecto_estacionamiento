@@ -1,0 +1,36 @@
+.section-button-add-ingrediente {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.section-input {
+  margin-top: 20px;
+}
+
+.title-crear-producto {
+  color: #312d3b;
+}
+
+.section-crear-producto {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.section-button-submits {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.contenedorHorizontal {
+  display: flex;
+  gap: 15px;
+}
+
+@media screen and (max-width: 1180px) {
+  .contenedorHorizontal {
+    display: block;
+    gap: none;
+  }
+}

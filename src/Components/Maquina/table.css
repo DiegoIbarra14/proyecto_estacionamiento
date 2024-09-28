@@ -1,0 +1,41 @@
+.card-table-proveedor {
+  border-radius: 8px 8px 0 0;
+}
+
+.titulo-table .titulo-table-h1 {
+  padding-top: 2%;
+  margin-left: 12%;
+  margin-bottom: 2%;
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.p-datatable-header {
+  background-color: white !important;
+  /*font-family: 'Poppins', sans-serif;*/
+  padding-left: 5% !important;
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px !important;
+  align-items: center;
+}
+
+.card-table-proveedor .p-datatable-header {
+  border-radius: 8px 8px 0 0;
+}
+
+.card-table-proveedor .p-datatable {
+  border-radius: 8px 8px 0 0;
+}
+
+.card-table-proveedor .p-datatable-header .flex {
+  padding-right: 10px;
+}
+@media screen and (max-width: 960px){
+  .table-maquina .p-datatable .p-datatable-tbody > tr > .column-state, .table-maquina .p-datatable .p-datatable-tbody > tr > .column-service, .table-maquina .p-datatable .p-datatable-tbody > tr > .column-edit{
+    padding: 9px 2rem;
+  }  
+  .table-maquina .p-datatable .p-datatable-tbody > tr > .column-delete{
+    padding: 10px 2rem;
+  }  
+}

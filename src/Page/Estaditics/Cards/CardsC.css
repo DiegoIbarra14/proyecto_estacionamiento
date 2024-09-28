@@ -1,0 +1,123 @@
+.card__estadisticas {
+    margin: 37px 0;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.card__estadistica {
+    flex: 1 1 calc(20% - 15px);
+    margin: 0 10px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* display: flex;
+    justify-content: space-between; */
+    align-content: center;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #e7e7e7;
+}
+
+.p-card .p-card-content {
+    display: flex;
+    padding: 0;
+}
+
+.card__content {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    flex: 1;
+}
+
+.card__header {
+    margin-bottom: 10px;
+}
+
+.card__title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #006389;
+}
+
+.card__value {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.card__change {
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    color: #666;
+}
+
+.card__change.positive {
+    color: #53C081;
+}
+
+.card__change.positive .pi {
+    background-color: #53C08126;   
+    border-radius: 50%;          
+    font-size: 0.7rem;             
+    box-shadow: 0 0 0 5px #53C08126;  
+    font-weight: bold;
+}
+
+.card__change.negative {
+    color: #ED6B6E;
+}
+
+.card__change.negative .pi {
+    background-color: #ED6B6E26;   
+    border-radius: 50%;          
+    font-size: 0.7rem;             
+    box-shadow: 0 0 0 5px #ED6B6E26;  
+    font-weight: bold;
+}
+
+.card__change .pi{
+    margin-right: 0.5rem;
+}
+
+.card__icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.card__icon {
+    font-size: 3rem;
+    color: #243B60;
+}
+
+/* Media queries para responsividad */
+
+@media (max-width: 1400px) {
+    .card__estadistica {
+        flex: auto;
+    }
+    .card__estadisticas {
+        gap: 0.55em;
+    }
+}
+
+@media (max-width: 1100px) {
+    .card__estadistica {
+        flex: 1 1 calc(40% - 20px); 
+    }
+    .card__estadisticas {
+        gap: 0.55em;
+    }
+}
+
+@media (max-width: 768px) {
+    .card__estadistica {
+        flex: 1 1 calc(100% - 20px); 
+    }
+    .card__estadisticas {
+        gap: 0.55em;
+    }
+}

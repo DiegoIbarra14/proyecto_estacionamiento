@@ -1,0 +1,186 @@
+
+@media (max-width: 550px){
+  .container-login .flex-column .login-inputs {
+    width: 250px;
+  }
+  .width-navbar {
+    width: 40px;
+  }
+}
+.formulario{
+  
+  width: 550px;
+  background-color: white;
+  border-radius: 10px;
+  height: 80vh;
+  display: grid;
+  align-items: center;
+
+}
+.formulario__login{
+  
+  height: auto;
+  padding: 0 80px;
+
+
+}
+
+@media (max-width: 610px){
+  .formulario__login{
+    height: auto;
+    padding: 0 40px;
+  
+  }
+
+  .formulario{
+    width: auto; 
+  }
+}
+.contenedor-principal{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  box-sizing: border-box;
+  background: url("../../Imagenes/fondo_azul.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.contenedor-slider{
+  grid-column: 1/2;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+
+  height: 100vh;
+
+  
+
+}
+.slider{
+  background-color: white;
+  border-radius: 20px;
+  padding: 10px;
+  width: 90%!important;
+  height: 80vh;
+  display: flex;
+}
+
+.slider img{
+  max-height: 500px;
+}
+
+
+.contenedor-login{
+  padding: 30px;
+ 
+  height: 100vh;
+  display: flex;
+  grid-column: 2/4;
+  justify-content: center;
+  align-items: center;
+  
+
+
+}
+
+.logo-empresa{
+  display: flex;
+  justify-content: center;
+}
+
+.logo-empresa img{
+  width: 160px;
+
+}
+.content-frase{
+  color:rgb(59,117,241);
+  font-weight: 700;
+  font-size: 23px;
+
+
+}
+.content-frase-second{
+  color: rgb(6,33,78);
+
+}
+.frase{
+  position: relative;
+  top: -30px;
+  color: rgb(93,99,124);
+}
+.frase-copy{
+  margin-top: 90px;
+  color: rgb(93,99,124);
+}
+.login-field{
+  color: rgb(93,99,124);
+}
+
+.slider-title-item{
+  color: rgb(73,127,242);
+  font-weight: 800; 
+  margin: 0px ;
+}
+.galleria-content{
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  align-items: center;
+  justify-content: center;
+  
+}
+.slider-item-subtitle{
+  color: rgb(93,99,124);
+  position: relative;
+  top: -20px;
+}
+
+.content-input-password{
+  width: 100%;
+}
+.content-input-password input{
+  width: 100%;
+}
+.button-login{
+  background-color: rgb(4,99,138)!important;
+}
+.slider-item-img{
+  display: flex;
+  justify-content: center;
+  
+  width: 100%;
+}
+.galleria-item{
+  background-color:purple!;
+}
+.slider{
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media (max-width: 1200px) {
+  .contenedor-principal{
+    display: flex;
+    
+  }
+  .contenedor-slider{
+    display: none;
+  }
+ 
+  
+}
+@media (max-width: 800px) {
+  .contenedor-principal{
+    display: flex;
+    
+  }
+  .contenedor-slider{
+    display: none;
+  }
+ 
+  
+}
