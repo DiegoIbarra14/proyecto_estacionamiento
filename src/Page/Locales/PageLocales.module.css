@@ -200,7 +200,7 @@
 }
 
 .localesFormInput {
-    width: 100%;
+    width: 70%;
 }
 
 .localesMapContainer {
@@ -230,4 +230,131 @@
     flex: 1; /* Ocupa todo el espacio disponible */
     display: flex;
     flex-direction: column;
+}
+
+
+
+/* Estilos para el Popup de Crear Área */
+.areaDialogContent {
+    position: relative;
+    padding: 1rem;
+}
+
+/* Posicionamiento del botón "Crear Área" en la esquina superior derecha */
+.areaDialogHeader {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
+/* Tabla vacía centrada */
+.emptyTableContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem; /* Asegura que la tabla esté centrada verticalmente */
+}
+
+.emptyDataTable {
+    width: 80%; /* Ajusta el ancho según tus necesidades */
+}
+
+/* Estilos para el Popup de Crear Espacios */
+.crearEspaciosContent {
+    display: flex;
+    flex-direction: row; /* Organizar en fila para tener formulario e imagen lado a lado */
+    gap: 16rem; /* Espaciado entre los elementos */
+    align-items: flex-start; /* Alinear al inicio para que la imagen no se centre verticalmente */
+}
+
+.crearEspaciosForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex: 1;
+}
+
+.localesFormField {
+    display: flex;
+    flex-direction: column;
+}
+
+.reducedInput {
+    width: 800%; /* Asegura que los inputs ocupen el 100% del contenedor */
+    max-width: 300px; /* Limita el ancho máximo para reducir el tamaño */
+}
+
+.crearEspaciosButtons {
+    display: flex;
+    gap: 1rem;
+}
+
+/* Imagen del espacio posicionada en la parte superior derecha */
+.imageContainer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+}
+
+.staticImageBox {
+    position: relative; /* Necesario para posicionar el pseudo-elemento */
+    width: 300px;
+    height: 300px;
+    border: 2px solid #ccc; /* Borde sólido */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #999;
+    border-radius: 10px; /* Bordes redondeados */
+    overflow: hidden; /* Ocultar desbordes del pseudo-elemento */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4); /* Brillo estático */
+    background-color: #fff; /* Fondo blanco (puedes ajustarlo según tu diseño) */
+}
+
+/* Pseudo-elemento para el efecto de luz deslizante */
+.staticImageBox::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -75%; /* Iniciar fuera del cuadro a la izquierda */
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        rgba(129, 4, 98, 0) 0%,
+        rgba(255, 255, 255, 0.4) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    transform: skewX(-25deg); /* Inclinar el gradiente para un efecto más realista */
+    animation: shine 3s infinite; /* Animación continua */
+}
+
+/* Keyframes para la animación del efecto de luz deslizante */
+@keyframes shine {
+    0% {
+        left: -75%;
+    }
+    50% {
+        left: 125%; /* Mover el pseudo-elemento completamente a la derecha */
+    }
+    100% {
+        left: -75%;
+    }
+}
+
+/* Opcional: Efecto de brillo al pasar el cursor */
+.staticImageBox:hover {
+    box-shadow: 0 0 20px rgb(14, 13, 14); /* Brillo más intenso al hover */
+}
+
+
+/* Acciones del diálogo de Crear Espacios alineadas a la izquierda */
+.dialogActionsLeft {
+    display: flex;
+    justify-content: flex-start; /* Alinea los botones a la izquierda */
+    gap: 1rem;
+    margin-top: 1rem;
+}
+.localesFormInput1{
+    width: 280px;
 }

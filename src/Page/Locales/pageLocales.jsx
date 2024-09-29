@@ -1,20 +1,31 @@
+// src/Page/Locales/PageLocales.jsx
+
 import React, { useState, useRef, useCallback } from 'react';
 import Container from '../../Components/Container/Container';
 import { Toast } from 'primereact/toast';
 import { InputText } from 'primereact/inputtext';
+import { Dropdown } from 'primereact/dropdown'; // Importar Dropdown
 import { Button } from 'primereact/button';
 import { Dialog } from 'primereact/dialog';
 import { Card } from 'primereact/card';
 import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
+import { DataTable } from 'primereact/datatable';
+import { Column } from 'primereact/column';
+import classNames from 'classnames'; // Asegúrate de haber instalado 'classnames'
 
-// Importa la imagen personalizada
 import carroIcon from '../../imagenes/carro.png';
 
 import styles from './PageLocales.module.css'; // Importa el módulo de estilos
+// Importar las imágenes según el estado
+import DisponibleImg from '../../imagenes/Disponible.webp';
+import OcupadoImg from '../../imagenes/Ocupado.webp';
+import MantenimientoImg from '../../imagenes/Mantenimiento.webp';
+
 
 const PageLocales = () => {
   const toast = useRef(null);
   const mapRef = useRef(null);
+  
   const [locales, setLocales] = useState([
     {
       id: 1,
@@ -36,7 +47,7 @@ const PageLocales = () => {
       lat: -6.229164,
       lng: -77.872053,
     },
-    // Puedes añadir más locales aquí
+    // Puedes añadir más locales según tus necesidades
   ]);
 
   const [searchTerm, setSearchTerm] = useState('');
@@ -55,10 +66,22 @@ const PageLocales = () => {
   const [mapCenter, setMapCenter] = useState({ lat: -12.046374, lng: -77.042793 }); // Centro del mapa principal
   const [mapBounds, setMapBounds] = useState(null); // Nuevas líneas para manejar límites
 
+  const [areaDialogVisible, setAreaDialogVisible] = useState(false); // Popup de Crear Área
+
+  const [crearEspaciosDialogVisible, setCrearEspaciosDialogVisible] = useState(false); // Nuevo Popup para Crear Espacios
+
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: 'AIzaSyD5G2fu2-rOgGY4dVkYaDCeW-N-oyiDmnA', // Reemplaza con tu clave API real
   });
+
+  // Opciones para el Dropdown de "Estado espacio"
+  const estadosEspacio = [
+    { label: 'Activo', value: 'Activo' },
+    { label: 'Inactivo', value: 'Inactivo' },
+    { label: 'En Mantenimiento', value: 'En Mantenimiento' },
+    // Añade más estados según tus necesidades
+  ];
 
   // Función para geocodificar una dirección
   const geocodeAddress = (address) => {
@@ -74,7 +97,12 @@ const PageLocales = () => {
       });
     });
   };
-
+  // Mapeo de estado a imagen
+  const estadoImagenMap = {
+    Activo: DisponibleImg,
+    Inactivo: OcupadoImg,
+    'En Mantenimiento': MantenimientoImg,
+  };
   // Función para manejar la búsqueda mejorada
   const handleSearch = async () => {
     const trimmedSearch = searchTerm.trim().toLowerCase();
@@ -271,6 +299,67 @@ const PageLocales = () => {
     setDialogVisible(true);
   };
 
+  // Nuevo estado para el formulario de Crear Espacios
+  const [nuevoEspacio, setNuevoEspacio] = useState({
+    nombreEspacio: '',
+    estadoEspacio: null, // Inicializar como null para el Dropdown
+  });
+
+  // Función para manejar el cambio en los campos del formulario de Crear Espacios
+  const handleEspacioChange = (e, field) => {
+    setNuevoEspacio({ ...nuevoEspacio, [field]: e.value }); // Usar e.value para Dropdown
+  };
+
+  // Función para guardar el nuevo espacio (puedes personalizarla según tus necesidades)
+  const handleGuardarEspacio = () => {
+    // Validar que los campos estén llenos
+    if (!nuevoEspacio.nombreEspacio || !nuevoEspacio.estadoEspacio) {
+      toast.current.show({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'Por favor, completa todos los campos.',
+        life: 3000,
+      });
+      return;
+    }
+
+    // Aquí puedes agregar la lógica para guardar el nuevo espacio
+    toast.current.show({
+      severity: 'success',
+      summary: 'Éxito',
+      detail: 'Espacio creado exitosamente',
+      life: 3000,
+    });
+    setCrearEspaciosDialogVisible(false);
+    // Resetear el formulario
+    setNuevoEspacio({
+      nombreEspacio: '',
+      estadoEspacio: null,
+    });
+  };
+
+  // Funciones para la tabla en el popup de Crear Área (tabla vacía)
+  const rowClass = (rowData) => {
+    return {
+      'p-row-red': rowData.quantity === 0,
+      'p-row-blue': rowData.quantity > 0 && rowData.quantity < 10,
+      'p-row-teal': rowData.quantity > 10,
+    };
+  };
+
+  const stockBodyTemplate = (rowData) => {
+    const stockClassName = classNames(
+      'border-circle w-2rem h-2rem inline-flex font-bold justify-content-center align-items-center text-sm',
+      {
+        'bg-red-100 text-red-900': rowData.quantity === 0,
+        'bg-blue-100 text-blue-900': rowData.quantity > 0 && rowData.quantity < 10,
+        'bg-teal-100 text-teal-900': rowData.quantity > 10,
+      }
+    );
+
+    return <div className={stockClassName}>{rowData.quantity}</div>;
+  };
+
   return (
     <Container>
       <Toast ref={toast} />
@@ -278,7 +367,7 @@ const PageLocales = () => {
         <div className={styles.localesHeader}>
           <h1 className={styles.localesTitle}>Mis Locales</h1>
           <p className={styles.localesDescription}>
-            A continuación se visualiza los locales previamente creados para poder colocar las áreas que usted ha definido en cada uno de sus locales.
+            A continuación se visualizan los locales previamente creados para poder colocar las áreas que usted ha definido en cada uno de sus locales.
           </p>
         </div>
 
@@ -337,11 +426,10 @@ const PageLocales = () => {
 
         {/* Grid de Locales */}
         <div className={styles.localesGrid}>
-          {/* Reemplazado Card por div para manejar onClick correctamente */}
+          {/* Tarjeta para crear un nuevo local */}
           <div
             className={`${styles.localesCard} ${styles.localesCreateCard}`}
             onClick={openCreateDialog}
-            style={{ cursor: 'pointer' }} // Cambia el cursor para indicar que es clicable
           >
             <div>
               <i className={`${styles.localesCreateIcon} pi pi-plus`}></i>
@@ -361,7 +449,7 @@ const PageLocales = () => {
                     </span>
                   </div>
                   <div>
-                    <h2 className={styles.localesLocalName}>  {local.nombre}</h2>
+                    <h2 className={styles.localesLocalName}>{local.nombre}</h2>
                     <p className={styles.localesLocalAddress}>{local.direccion}</p>
                   </div>
                 </div>
@@ -401,9 +489,7 @@ const PageLocales = () => {
                       className="p-button-rounded p-button-outlined p-button-help"
                       tooltip="Crear Área"
                       tooltipOptions={{ position: 'top' }}
-                      onClick={() => {
-                        // Implementa la lógica para crear un área
-                      }}
+                      onClick={() => setAreaDialogVisible(true)} // Abre el popup de Crear Área
                     />
                   </div>
                 </div>
@@ -577,6 +663,110 @@ const PageLocales = () => {
               icon="pi pi-check"
               onClick={handleSave}
               autoFocus
+            />
+          </div>
+        </Dialog>
+
+        {/* Diálogo para Crear Área */}
+        <Dialog
+          visible={areaDialogVisible}
+          style={{ width: '60vw' }}
+          header="Crear Área"
+          modal
+          onHide={() => setAreaDialogVisible(false)}
+          className={styles.localesDialog} // Usar estilos existentes
+        >
+        <p>A continuación se crean las Areas previamente para que usted defina en cada uno de los espacio.</p>
+
+          <div className={styles.areaDialogContent}>
+            {/* Botón "Crear Área" posicionado en la esquina superior derecha */}
+            <div className={styles.areaDialogHeader}>
+              <Button
+                icon="pi pi-plus"
+                onClick={() => setCrearEspaciosDialogVisible(true)}
+                className="p-button-rounded p-button-success"
+                tooltip="Crear Área"
+                tooltipOptions={{ position: 'top' }}
+              />
+            </div>
+
+            {/* Tabla Vacía Centrada */}
+            <div className={styles.emptyTableContainer}>
+              <DataTable
+                value={[]} // Tabla vacía
+                className={styles.emptyDataTable}
+                paginator
+                rows={5}
+                emptyMessage="No hay datos disponibles."
+              />
+            </div>
+          </div>
+        </Dialog>
+
+        {/* Diálogo para Crear Espacios */}
+        <Dialog
+          visible={crearEspaciosDialogVisible}
+          style={{ width: '50vw' }}
+          header="Crear Espacios"
+          modal
+          onHide={() => setCrearEspaciosDialogVisible(false)}
+          className={styles.localesDialog} // Usar estilos existentes
+        >
+          <p>A continuación se crean los Espacios previamente para poder colocar las áreas que usted ha definido en cada uno de sus locales.</p>
+          <div className={styles.crearEspaciosContent}>
+            <div className={styles.formContainer}>
+              <div className={styles.localesFormField}>
+                <label htmlFor="nombreEspacio" className={styles.localesFormLabel}>
+                  Nombre de espacio
+                </label>
+                <InputText
+                  id="nombreEspacio"
+                  value={nuevoEspacio.nombreEspacio}
+                  onChange={(e) => handleEspacioChange(e, 'nombreEspacio')}
+                  placeholder="Ingrese el nombre del espacio"
+                  className={styles.localesFormInput1}
+                />
+              </div>
+              <div className={styles.localesFormField}>
+                <label htmlFor="estadoEspacio" className={styles.localesFormLabel}>
+                  Estado espacio
+                </label>
+                <Dropdown
+                  id="estadoEspacio"
+                  value={nuevoEspacio.estadoEspacio}
+                  options={estadosEspacio}
+                  onChange={(e) => handleEspacioChange(e, 'estadoEspacio')}
+                  placeholder="Seleccione el estado"
+                  className={styles.localesFormInput1}
+                />
+              </div>
+            </div>
+            <div className={styles.imageContainer}>
+              <div className={styles.staticImageBox}>
+              {nuevoEspacio.estadoEspacio ? (
+                  <img
+                    src={estadoImagenMap[nuevoEspacio.estadoEspacio]}
+                    alt={nuevoEspacio.estadoEspacio}
+                    className={styles.estadoImagen}
+                  />
+                ) : (
+                <p>Imagen del Espacio</p>
+              )}
+              </div>
+            </div>
+          </div>
+          <div className={styles.dialogActionsLeft}>
+            <Button
+              label="Cancelar"
+              icon="pi pi-times"
+              onClick={() => setCrearEspaciosDialogVisible(false)}
+              className="p-button-text"
+            />
+            <Button
+              label="Guardar"
+              icon="pi pi-check"
+              onClick={handleGuardarEspacio}
+              className="p-button-success"
             />
           </div>
         </Dialog>
