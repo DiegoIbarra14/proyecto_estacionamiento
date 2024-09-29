@@ -19,7 +19,7 @@ export default function AuthUser() {
     return tokenString;
   };
 
-  // const [token, setToken] = useState(getToken());
+  const [token, setToken] = useState(getToken());
 
 
   const saveToken = (token) => {
