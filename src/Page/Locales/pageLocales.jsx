@@ -1,6 +1,6 @@
 // src/Page/Locales/PageLocales.jsx
 
-import React, { useState, useRef, useCallback,useEffect } from 'react';
+import React, { useState, useRef, useCallback, useEffect } from 'react';
 import Container from '../../Components/Container/Container';
 import { Toast } from 'primereact/toast';
 import { InputText } from 'primereact/inputtext';
@@ -32,7 +32,11 @@ import { categoriaService } from '../../Services/CategoriaService';
 
 
 const PageLocales = () => {
-  console.log("ss", departamentosData)
+  const estadoEstadoEspacio = [
+    { label: "activo", value: true },
+    { label: "desactivo", value: false }
+  ]
+  const [espacios, setEspacios] = useState([])
   const toast = useRef(null);
   const [categorias, setCategorias] = useState([])
   const mapRef = useRef(null);
@@ -48,6 +52,10 @@ const PageLocales = () => {
   const [provincias, setProvincias] = useState([]);
   const [distritos, setDistritos] = useState([]);
 
+  const getAllEspacios = async (id) => {
+    console.log("een")
+    await localService.getLocalById(id, (data) => { setEspacios(data) })
+  }
   // Función para manejar cuando se selecciona un departamento
   const handleDepartamentoChange = (e) => {
     const departamentoSeleccionado = e.value;
@@ -111,8 +119,8 @@ const PageLocales = () => {
   }, [
 
   ])
-  const [areaDialogVisible,setAreaDialogVisible]=useState(false)
-  const [crearEspaciosDialogVisible,setCrearEspaciosDialogVisible]=useState(false)
+  const [areaDialogVisible, setAreaDialogVisible] = useState(false)
+  const [crearEspaciosDialogVisible, setCrearEspaciosDialogVisible] = useState(false)
   const [searchTerm, setSearchTerm] = useState('');
   const [dialogVisible, setDialogVisible] = useState(false);
   const [editingLocal, setEditingLocal] = useState(null);
@@ -171,10 +179,10 @@ const PageLocales = () => {
 
   // Lógica de filtrado actualizada para buscar por nombre o dirección
   const filteredLocales = locales.filter((local) => {
-    const lowerCaseSearchTerm = searchTerm.toLowerCase();
+    const lowerCaseSearchTerm = searchTerm?.toLowerCase();
     return (
-      local.nombre.toLowerCase().includes(lowerCaseSearchTerm) ||
-      local.direccion.toLowerCase().includes(lowerCaseSearchTerm)
+      local.nombre?.toLowerCase().includes(lowerCaseSearchTerm) ||
+      local.direccion?.toLowerCase().includes(lowerCaseSearchTerm)
     );
   });
 
@@ -187,14 +195,18 @@ const PageLocales = () => {
       setCategorias(data);
     })
   }, []);
+  const estadoImagenMap = {
+    "Activo": DisponibleImg,
+    "Inactivo": OcupadoImg,
+    'En Mantenimiento': MantenimientoImg,
+  };
 
 
 
 
-
-  const handleSave = async() => {
+  const handleSave = async () => {
     if (editingLocal) {
-      await localService.updateLocal(newLocal?.id,newLocal)
+      await localService.updateLocal(newLocal?.id, newLocal)
       toast.current.show({
         severity: 'success',
         summary: 'Actualizado',
@@ -228,17 +240,36 @@ const PageLocales = () => {
     setEditingLocal(local);
     setNewLocal(local);
     setDialogVisible(true);
-    console.log("ee",local)
+    console.log("ee", local)
   };
 
   const handleDelete = async (id) => {
-   await localService.deleteLocal(id)
+    await localService.deleteLocal(id)
     toast.current.show({
       severity: 'info',
       summary: 'Eliminado',
       detail: 'Local eliminado',
       life: 3000,
     });
+  };
+  const handleEditEspacio = (espacio) => {
+    setNuevoEspacio(espacio);
+    setCrearEspaciosDialogVisible(true)
+    console.log("ee", espacio)
+
+
+  };
+
+  const handleDeleteEspacio = async (rowData) => {
+    console.log("eliminar", newLocal, rowData)
+
+    await localService.eliminarEspacio(newLocal?.id, rowData?.id)
+    // toast.current.show({
+    //   severity: 'info',
+    //   summary: 'Eliminado',
+    //   detail: 'Local eliminado',
+    //   life: 3000,
+    // });
   };
 
   const openCreateDialog = () => {
@@ -262,29 +293,37 @@ const PageLocales = () => {
 
   // Nuevo estado para el formulario de Crear Espacios
   const [nuevoEspacio, setNuevoEspacio] = useState({
-    nombreEspacio: '',
-    estadoEspacio: null, // Inicializar como null para el Dropdown
+    nombre: '',
+    disponibilidad: null, // Inicializar como null para el Dropdown
   });
 
   // Función para manejar el cambio en los campos del formulario de Crear Espacios
   const handleEspacioChange = (e, field) => {
+
     setNuevoEspacio({ ...nuevoEspacio, [field]: e.value }); // Usar e.value para Dropdown
   };
-
+  console.log("da", nuevoEspacio)
   // Función para guardar el nuevo espacio (puedes personalizarla según tus necesidades)
-  const handleGuardarEspacio = () => {
+  const handleGuardarEspacio = async () => {
+    console.log("ess", nuevoEspacio)
     // Validar que los campos estén llenos
-    if (!nuevoEspacio.nombreEspacio || !nuevoEspacio.estadoEspacio) {
-      toast.current.show({
-        severity: 'error',
-        summary: 'Error',
-        detail: 'Por favor, completa todos los campos.',
-        life: 3000,
-      });
+    if (nuevoEspacio?.id) {
+      let value = await localService.editarEspacio(newLocal?.id, nuevoEspacio?.id, nuevoEspacio)
+      if (value) {
+        toast.current.show({
+          severity: 'success',
+          summary: 'Éxito',
+          detail: 'Espacio actualizado exitosamente',
+          life: 3000,
+        });
+        setCrearEspaciosDialogVisible(false)
+        setNuevoEspacio({nombre:"",disponibilidad:""})
+      }
       return;
     }
 
     // Aquí puedes agregar la lógica para guardar el nuevo espacio
+    await localService.agregarEspacio(newLocal?.id, nuevoEspacio)
     toast.current.show({
       severity: 'success',
       summary: 'Éxito',
@@ -319,6 +358,24 @@ const PageLocales = () => {
     );
 
     return <div className={stockClassName}>{rowData.quantity}</div>;
+  };
+  const actionBodyTemplate = (rowData) => {
+    return (
+      <div>
+        <Button
+          icon="pi pi-pencil"
+          onClick={() => handleEditEspacio(rowData)}
+          className="p-button-warning"
+        />
+        <Button
+
+          icon="pi pi-trash"
+          onClick={() => handleDeleteEspacio(rowData)}
+          className="p-button-danger"
+          style={{ marginLeft: '0.5em' }}
+        />
+      </div>
+    );
   };
 
   return (
@@ -392,12 +449,12 @@ const PageLocales = () => {
                       tooltipOptions={{ position: 'top' }}
                     />
                     <Button
-                      label="Crear Área"
+                      label="Crear Espacios"
                       icon="pi pi-plus-circle"
                       className="p-button-rounded p-button-outlined p-button-help"
                       tooltip="Crear Área"
                       tooltipOptions={{ position: 'top' }}
-                      onClick={() => setAreaDialogVisible(true)} // Abre el popup de Crear Área
+                      onClick={() => { getAllEspacios(local?.id); setAreaDialogVisible(true); setNewLocal(local) }}// Abre el popup de Crear Área
                     />
                   </div>
                 </div>
@@ -541,6 +598,17 @@ const PageLocales = () => {
                   placeholder="Costo hora"
                 />
               </div>
+              <div className={styles.localesFormField}>
+                <label htmlFor="costo" className={styles.localesFormLabel}>
+                  Descripcion
+                </label>
+                <InputText
+                  value={newLocal.descripcion}
+                  onChange={(e) => handleInputChange(e, 'descripcion')}
+                  className={styles.localesFormInput}
+                  placeholder="Descripcion"
+                />
+              </div>
             </div>
 
             <div>
@@ -614,7 +682,7 @@ const PageLocales = () => {
           onHide={() => setAreaDialogVisible(false)}
           className={styles.localesDialog} // Usar estilos existentes
         >
-        <p>A continuación se crean las Areas previamente para que usted defina en cada uno de los espacio.</p>
+          <p>A continuación se crean las Areas previamente para que usted defina en cada uno de los espacio.</p>
 
           <div className={styles.areaDialogContent}>
             {/* Botón "Crear Área" posicionado en la esquina superior derecha */}
@@ -631,12 +699,21 @@ const PageLocales = () => {
             {/* Tabla Vacía Centrada */}
             <div className={styles.emptyTableContainer}>
               <DataTable
-                value={[]} // Tabla vacía
+                value={espacios} // Tabla vacía
                 className={styles.emptyDataTable}
                 paginator
                 rows={5}
                 emptyMessage="No hay datos disponibles."
-              />
+              >
+                <Column header="Nombre Espacio" field='nombre' />
+                <Column header="Estado Espacio" body={(data) => (
+                  data?.disponibilidad ? <span style={{ backgroundColor: "#5dd868", padding: 7, borderRadius: "20px", color: "#fff" }}>Disponible</span > : <span style={{ backgroundColor: "#f13737", padding: 7, borderRadius: "20px", color: "#fff" }}>No Disponible</span>
+                )} />
+                <Column header="Acciones" body={actionBodyTemplate} />
+
+
+
+              </DataTable>
             </div>
           </div>
         </Dialog>
@@ -647,7 +724,7 @@ const PageLocales = () => {
           style={{ width: '50vw' }}
           header="Crear Espacios"
           modal
-          onHide={() => setCrearEspaciosDialogVisible(false)}
+          onHide={() => { setCrearEspaciosDialogVisible(false); setNuevoEspacio({ nombre: "", disponibilidad: "" }) }}
           className={styles.localesDialog} // Usar estilos existentes
         >
           <p>A continuación se crean los Espacios previamente para poder colocar las áreas que usted ha definido en cada uno de sus locales.</p>
@@ -658,9 +735,9 @@ const PageLocales = () => {
                   Nombre de espacio
                 </label>
                 <InputText
-                  id="nombreEspacio"
-                  value={nuevoEspacio.nombreEspacio}
-                  onChange={(e) => handleEspacioChange(e, 'nombreEspacio')}
+
+                  value={nuevoEspacio.nombre}
+                  onChange={(e) => handleEspacioChange({ ...e, value: e.target.value }, 'nombre')}
                   placeholder="Ingrese el nombre del espacio"
                   className={styles.localesFormInput1}
                 />
@@ -671,9 +748,10 @@ const PageLocales = () => {
                 </label>
                 <Dropdown
                   id="estadoEspacio"
-                  value={nuevoEspacio.estadoEspacio}
-                  
-                  onChange={(e) => handleEspacioChange(e, 'estadoEspacio')}
+                  value={nuevoEspacio.disponibilidad}
+                  options={estadoEstadoEspacio}
+
+                  onChange={(e) => handleEspacioChange(e, 'disponibilidad')}
                   placeholder="Seleccione el estado"
                   className={styles.localesFormInput1}
                 />
@@ -681,15 +759,15 @@ const PageLocales = () => {
             </div>
             <div className={styles.imageContainer}>
               <div className={styles.staticImageBox}>
-              {nuevoEspacio.estadoEspacio ? (
+                {nuevoEspacio.disponibilidad ? (
                   <img
-                    src={estadoImagenMap[nuevoEspacio.estadoEspacio]}
+                    src={estadoImagenMap[nuevoEspacio.disponibilidad ? "Activo" : "Inactivo"]}
                     alt={nuevoEspacio.estadoEspacio}
                     className={styles.estadoImagen}
                   />
                 ) : (
-                <p>Imagen del Espacio</p>
-              )}
+                  <p>Imagen del Espacio</p>
+                )}
               </div>
             </div>
           </div>

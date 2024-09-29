@@ -14,6 +14,7 @@ import Prueba from "../Page/AccesosDispositivos/prueba";
 import PageAccesoDevices from "../Page/AccesosDispositivos/PageAccesoDevices";
 import ProveedorProvider from "../Page/Proveedores/context/ProveedorProvider";
 import { useSelector } from "react-redux";
+import Alquiler from "../Page/Arquileres/Alquiler";
 
 function Auth() {
   let routes = useSelector((state) => state.auth)
@@ -23,7 +24,7 @@ function Auth() {
       case "/locales":
         return <Route key={route.path} path={route.path} element={<PageLocales />} />;
       case "/alquileres":
-        return <Route key={route.path} path={route.path} element={<PageLocales/>} />;
+        return <Route key={route.path} path={route.path} element={<Alquiler/>} />;
       default:
         return null; // En caso de que no coincida ninguna ruta
     }

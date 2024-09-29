@@ -1,0 +1,358 @@
+/* PageLocales.module.css */
+
+/* Contenedor general */
+.localesContainer {
+    padding: 2rem;
+    background-color: #F8FAFB; /* Fondo general de la página */
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Encabezado */
+.localesHeader {
+    text-align: center;
+}
+
+.localesTitle {
+    font-size: 2rem;
+    color: #4A6FE9; /* Color del título */
+    margin: 0;
+    font-weight: 700;
+}
+
+.localesDescription {
+    color: #A3A3A3; /* Color de descripción */
+    margin: 0.5rem 0;
+}
+
+/* Búsqueda */
+.localesSearchContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.localesSearchIcon {
+    font-size: 1.25rem;
+    color: #A3A3A3; /* Color del ícono de búsqueda */
+}
+
+.localesSearchInput {
+    width: 40%;
+    padding: 0.75rem;
+    border: 1px solid #E0E0E0;
+    border-radius: 50px; /* Borde redondeado */
+    font-size: 1rem;
+}
+
+/* Grid de tarjetas */
+.localesGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+    align-items: stretch; /* Asegura que las tarjetas se estiren para tener la misma altura */
+}
+
+/* Tarjetas de locales */
+.localesCard {
+    background: white;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    position: relative;
+    border: 1px solid #E0E0E0;
+
+    /* Flexbox para distribuir el contenido verticalmente */
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Asegura que la tarjeta ocupe toda la altura disponible */
+    
+}
+.localesCreateCardInDialog {
+    margin-bottom: 1rem;
+  }
+  
+.localesCard:hover {
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.localesCreateCard {
+    border: 2px dashed #4A6FE9; /* Estilo punteado para crear nuevo local */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.localesCreateIcon {
+    font-size: 2rem;
+    color: #4A6FE9;
+}
+
+.localesCreateText {
+    margin: 0;
+    color: #4A6FE9;
+    font-weight: 600;
+}
+
+.localesStatusBadge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background-color: #B6E2E1; /* Color de fondo del badge */
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+    color: #31C48D;
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+
+/* Información del local */
+.localesLocalInfo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.localesAvatar {
+    width: 3rem;
+    height: 3rem;
+    background-color: #E3E8FF; /* Fondo del avatar */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 1.25rem;
+    color: #4A6FE9;
+    font-weight: bold;
+}
+
+
+
+.localesLocalName {
+    margin: 0;
+    font-size: 1.25rem;
+    color: #4A6FE9;
+}
+
+.localesLocalAddress {
+    margin: 0;
+    color: #A3A3A3;
+    font-size: 0.875rem;
+}
+
+/* Detalles del local con etiquetas a la izquierda y datos a la derecha */
+.localesDetailsList {
+    margin-top: 1rem;
+}
+
+.localesDetailItem {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.localesDetailLabel {
+    font-weight: bold;
+    font-size: 0.875rem;
+    color: #A3A3A3;
+}
+
+.localesDetailValue {
+    font-size: 0.875rem;
+    color: #4A4A4A;
+}
+
+/* Botones alineados horizontalmente */
+.localesButtonGroup {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+/* Diálogo */
+.localesDialog {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.localesDialogContent {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.localesFormField {
+    margin-bottom: 1rem;
+}
+
+.localesFormLabel {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #4A6FE9;
+}
+
+.localesFormInput {
+    width: 70%;
+}
+
+.localesMapContainer {
+    width: 100%;
+    height: 300px;
+}
+
+.localesDialogActions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+/* Responsividad (Opcional) */
+@media (max-width: 768px) {
+    .localesDialogContent {
+        grid-template-columns: 1fr;
+    }
+
+    .localesSearchInput {
+        width: 80%;
+    }
+}
+
+/* Ajustes adicionales para uniformidad */
+.localesCardContent {
+    flex: 1; /* Ocupa todo el espacio disponible */
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+/* Estilos para el Popup de Crear Área */
+.areaDialogContent {
+    position: relative;
+    padding: 1rem;
+}
+
+/* Posicionamiento del botón "Crear Área" en la esquina superior derecha */
+.areaDialogHeader {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
+/* Tabla vacía centrada */
+.emptyTableContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem; /* Asegura que la tabla esté centrada verticalmente */
+}
+
+.emptyDataTable {
+    width: 80%; /* Ajusta el ancho según tus necesidades */
+}
+
+/* Estilos para el Popup de Crear Espacios */
+.crearEspaciosContent {
+    display: flex;
+    flex-direction: row; /* Organizar en fila para tener formulario e imagen lado a lado */
+    gap: 16rem; /* Espaciado entre los elementos */
+    align-items: flex-start; /* Alinear al inicio para que la imagen no se centre verticalmente */
+}
+
+.crearEspaciosForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex: 1;
+}
+
+.localesFormField {
+    display: flex;
+    flex-direction: column;
+}
+
+.reducedInput {
+    width: 800%; /* Asegura que los inputs ocupen el 100% del contenedor */
+    max-width: 300px; /* Limita el ancho máximo para reducir el tamaño */
+}
+
+.crearEspaciosButtons {
+    display: flex;
+    gap: 1rem;
+}
+
+/* Imagen del espacio posicionada en la parte superior derecha */
+.imageContainer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+}
+
+.staticImageBox {
+    position: relative; /* Necesario para posicionar el pseudo-elemento */
+    width: 300px;
+    height: 300px;
+    border: 2px solid #ccc; /* Borde sólido */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #999;
+    border-radius: 10px; /* Bordes redondeados */
+    overflow: hidden; /* Ocultar desbordes del pseudo-elemento */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4); /* Brillo estático */
+    background-color: #fff; /* Fondo blanco (puedes ajustarlo según tu diseño) */
+}
+
+/* Pseudo-elemento para el efecto de luz deslizante */
+.staticImageBox::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -75%; /* Iniciar fuera del cuadro a la izquierda */
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        rgba(129, 4, 98, 0) 0%,
+        rgba(255, 255, 255, 0.4) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    transform: skewX(-25deg); /* Inclinar el gradiente para un efecto más realista */
+    animation: shine 3s infinite; /* Animación continua */
+}
+
+/* Keyframes para la animación del efecto de luz deslizante */
+@keyframes shine {
+    0% {
+        left: -75%;
+    }
+    50% {
+        left: 125%; /* Mover el pseudo-elemento completamente a la derecha */
+    }
+    100% {
+        left: -75%;
+    }
+}
+
+/* Opcional: Efecto de brillo al pasar el cursor */
+.staticImageBox:hover {
+    box-shadow: 0 0 20px rgb(14, 13, 14); /* Brillo más intenso al hover */
+}
+
+
+/* Acciones del diálogo de Crear Espacios alineadas a la izquierda */
+.dialogActionsLeft {
+    display: flex;
+    justify-content: flex-start; /* Alinea los botones a la izquierda */
+    gap: 1rem;
+    margin-top: 1rem;
+}
+.localesFormInput1{
+    width: 280px;
+}
