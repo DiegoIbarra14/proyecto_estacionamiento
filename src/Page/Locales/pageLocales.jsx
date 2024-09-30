@@ -67,6 +67,7 @@ const PageLocales = () => {
     setSelectedProvincia(null); // Limpiar la selección de provincia
     setDistritos([]); // Limpiar los distritos
   };
+ 
 
   // Función para manejar cuando se selecciona una provincia
   const handleProvinciaChange = (e) => {
@@ -786,6 +787,7 @@ const PageLocales = () => {
             />
           </div>
         </Dialog>
+        
       </div>
     </Container>
   );
