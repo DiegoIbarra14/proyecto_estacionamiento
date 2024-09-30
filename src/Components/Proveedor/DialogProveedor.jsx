@@ -13,7 +13,7 @@ import { fetchDataDocument } from '../../Services/apisPeruService';
 import { contactValidationRules } from '../../validationRules/Proveedores/contactValidateRules';
 import useFormValidation from '../../hooks/useFormValidation';
 import ValidatedInputedText from '../General/Inputs/ValidatedInputedText';
-import { proveedorValidationRules } from '../../validationRules/Proveedores/ProveedorValidateRules';
+//import { proveedorValidationRules } from '../../validationRules/Proveedores/ProveedorValidateRules';
 
 const DialogProveedor = ({ visible, setVisibleDialog, sendContact, handleRemoveContacto, handleSubmit, SendProveedor,Desabilitar }) => {
     const { tiposDocumentos, proveedor, setProveedor, counter, setCounter, proveedores,
@@ -23,7 +23,7 @@ const DialogProveedor = ({ visible, setVisibleDialog, sendContact, handleRemoveC
         initialContactValues, setInitialValues, initialProvedorValues,
         setProveedorValues, valueMaxDocumento, setValueMaxDocumento } = useContext(contextProveedor)
 
-    const [validationRules, setValidationRules] = useState(proveedorValidationRules(valueMaxDocumento))
+    const [validationRules, setValidationRules] = useState(valueMaxDocumento)
 
 
     const { handleChange: handleContactChange, validate: validateContact
@@ -55,7 +55,7 @@ const DialogProveedor = ({ visible, setVisibleDialog, sendContact, handleRemoveC
         )
     }, [proveedor])
     useEffect(() => {
-        setValidationRules(proveedorValidationRules(valueMaxDocumento))
+        setValidationRules(valueMaxDocumento)
     }, [valueMaxDocumento])
 
     const [mensajeError, setMensajeError] = useState("");
