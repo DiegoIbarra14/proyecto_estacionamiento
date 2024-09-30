@@ -20,10 +20,38 @@ class LocalService {
 
     async getAllLocalsRealTime(setLocalsCallback) {
         const localsRef = ref(db, 'locales');
+
         onValue(localsRef, (snapshot) => {
             const data = snapshot.val();
+
             if (data) {
-                const localsArray = Object.entries(data).map(([id, local]) => ({ id, ...local }));
+                const localsArray = Object.entries(data).map(([id, local]) => {
+                    // Inicializamos los contadores
+                    let availableSpacesCount = 0;
+                    let unavailableSpacesCount = 0;
+
+                    // Verificamos si el local tiene espacios
+                    if (local.espacios) {
+                        // Recorremos los espacios del local
+                        Object.values(local.espacios).forEach((espacio) => {
+                            // Aumentamos los contadores según la disponibilidad
+                            if (espacio.disponibilidad) {
+                                availableSpacesCount++;
+                            } else {
+                                unavailableSpacesCount++;
+                            }
+                        });
+                    }
+
+                    // Retornamos el local con los datos adicionales
+                    return {
+                        id,
+                        ...local,
+                        availableSpacesCount,   // Agregamos la cantidad de espacios disponibles
+                        unavailableSpacesCount  // Agregamos la cantidad de espacios no disponibles
+                    };
+                });
+
                 setLocalsCallback(localsArray);
             } else {
                 setLocalsCallback([]); // Si no hay locales
@@ -198,67 +226,150 @@ class LocalService {
         }
     }
     async obtenerAlquileresPorEspacio(espacioId, callback) {
-        console.log("data", espacioId);
+        console.log("Escuchando cambios en alquileres para espacio", espacioId);
+
         try {
             const alquileresRef = ref(db, 'alquileres');
 
             // Consulta para obtener los alquileres filtrados por espacio_id
             const q = query(alquileresRef, orderByChild('espacio_id'), equalTo(espacioId));
-            const snapshot = await get(q);
 
-            if (!snapshot.exists()) {
-                console.log("No se encontraron alquileres para este espacio.");
-                return [];
-            }
+            // Escuchar en tiempo real los cambios en la consulta
+            onValue(q, async (snapshot) => {
+                if (!snapshot.exists()) {
+                    console.log("No se encontraron alquileres para este espacio.");
+                    callback([]); // Llama al callback con un array vacío
+                    return;
+                }
 
-            const alquileresPromises = [];
+                const alquileresPromises = [];
 
-            // Recorrer los alquileres obtenidos
-            snapshot.forEach((alquilerSnap) => {
-                const alquilerData = alquilerSnap.val();
-                const alquilerId = alquilerSnap.key; // Obtener el ID del alquiler
-                console.log("data-arc", alquilerId);
+                // Recorrer los alquileres obtenidos
+                snapshot.forEach((alquilerSnap) => {
+                    const alquilerData = alquilerSnap.val();
+                    const alquilerId = alquilerSnap.key; // Obtener el ID del alquiler
+                    console.log("data-arc", alquilerId);
 
-                // Referencia al usuario/persona asociada al alquiler
-                const personaRef = ref(db, `usuarios/${alquilerData.usuario_id}/persona`);
+                    // Referencia al usuario/persona asociada al alquiler
+                    const personaRef = ref(db, `usuarios/${alquilerData.usuario_id}/persona`);
 
-                // Agregar la promesa a la lista
-                const personaPromise = get(personaRef).then((personaSnap) => {
-                    console.log("holas", personaSnap?.val());
-                    if (personaSnap.exists()) {
-                        const personaData = personaSnap.val();
+                    // Agregar la promesa a la lista
+                    const personaPromise = get(personaRef).then((personaSnap) => {
+                        console.log("Datos de la persona:", personaSnap?.val());
 
-                        // Retornar los datos del alquiler, la persona y el ID del alquiler
-                        return {
-                            id: alquilerId, // Agregar el ID del alquiler
-                            ...alquilerData,
-                            nombre_persona: `${personaData.nombres} ${personaData.apellidos}`,
-                            numero_documento: personaData.documento // Corrección aquí
-                        };
-                    } else {
-                        // Si no existe la persona, retornar solo el alquiler con su ID
+                        if (personaSnap.exists()) {
+                            const personaData = personaSnap.val();
+
+                            // Retornar los datos del alquiler, la persona y el ID del alquiler
+                            return {
+                                id: alquilerId, // Agregar el ID del alquiler
+                                ...alquilerData,
+                                nombre_persona: `${personaData.nombres} ${personaData.apellidos}`,
+                                numero_documento: personaData.documento // Corrección aquí
+                            };
+                        } else {
+                            // Si no existe la persona, retornar solo el alquiler con su ID
+                            return {
+                                id: alquilerId,
+                                ...alquilerData
+                            };
+                        }
+                    }).catch((error) => {
+                        console.error("Error al obtener los datos de la persona:", error);
                         return {
                             id: alquilerId,
-                            ...alquilerData
+                            ...alquilerData // Retornar solo el alquiler con su ID en caso de error
                         };
-                    }
-                }).catch((error) => {
-                    console.error("Error al obtener los datos de la persona:", error);
-                    return {
-                        id: alquilerId,
-                        ...alquilerData // Retornar solo el alquiler con su ID en caso de error
-                    };
+                    });
+
+                    // Agregar la promesa a la lista de promesas
+                    alquileresPromises.push(personaPromise);
                 });
 
-                // Agregar la promesa a la lista de promesas
-                alquileresPromises.push(personaPromise);
+                // Esperar a que todas las promesas se resuelvan
+                const alquileres = await Promise.all(alquileresPromises);
+
+                console.log("Alquileres completos:", alquileres);
+                callback(alquileres);
+
+            }, (error) => {
+                console.error("Error al obtener los alquileres por espacio en tiempo real:", error);
             });
 
-            // Esperar a que todas las promesas se resuelvan
-            const alquileres = await Promise.all(alquileresPromises);
+        } catch (error) {
+            console.error("Error al obtener los alquileres por espacio:", error);
+            throw error;
+        }
+    } async obtenerAlquileresPorEspacio(espacioId, callback) {
+        console.log("Escuchando cambios en alquileres para espacio", espacioId);
 
-            console.log("Alquileres completos:", alquileres);
-            callback(alquileres);
+        try {
+            const alquileresRef = ref(db, 'alquileres');
+
+            // Consulta para obtener los alquileres filtrados por espacio_id
+            const q = query(alquileresRef, orderByChild('espacio_id'), equalTo(espacioId));
+
+            // Escuchar en tiempo real los cambios en la consulta
+            onValue(q, async (snapshot) => {
+                if (!snapshot.exists()) {
+                    console.log("No se encontraron alquileres para este espacio.");
+                    callback([]); // Llama al callback con un array vacío
+                    return;
+                }
+
+                const alquileresPromises = [];
+
+                // Recorrer los alquileres obtenidos
+                snapshot.forEach((alquilerSnap) => {
+                    const alquilerData = alquilerSnap.val();
+                    const alquilerId = alquilerSnap.key; // Obtener el ID del alquiler
+                    console.log("data-arc", alquilerId);
+
+                    // Referencia al usuario/persona asociada al alquiler
+                    const personaRef = ref(db, `usuarios/${alquilerData.usuario_id}/persona`);
+
+                    // Agregar la promesa a la lista
+                    const personaPromise = get(personaRef).then((personaSnap) => {
+                        console.log("Datos de la persona:", personaSnap?.val());
+
+                        if (personaSnap.exists()) {
+                            const personaData = personaSnap.val();
+
+                            // Retornar los datos del alquiler, la persona y el ID del alquiler
+                            return {
+                                id: alquilerId, // Agregar el ID del alquiler
+                                ...alquilerData,
+                                nombre_persona: `${personaData.nombres} ${personaData.apellidos}`,
+                                numero_documento: personaData.documento // Corrección aquí
+                            };
+                        } else {
+                            // Si no existe la persona, retornar solo el alquiler con su ID
+                            return {
+                                id: alquilerId,
+                                ...alquilerData
+                            };
+                        }
+                    }).catch((error) => {
+                        console.error("Error al obtener los datos de la persona:", error);
+                        return {
+                            id: alquilerId,
+                            ...alquilerData // Retornar solo el alquiler con su ID en caso de error
+                        };
+                    });
+
+                    // Agregar la promesa a la lista de promesas
+                    alquileresPromises.push(personaPromise);
+                });
+
+                // Esperar a que todas las promesas se resuelvan
+                const alquileres = await Promise.all(alquileresPromises);
+
+                console.log("Alquileres completos:", alquileres);
+                callback(alquileres);
+
+            }, (error) => {
+                console.error("Error al obtener los alquileres por espacio en tiempo real:", error);
+            });
 
         } catch (error) {
             console.error("Error al obtener los alquileres por espacio:", error);
@@ -284,12 +395,12 @@ class LocalService {
 
                 if (localSnapshot.exists()) {
                     const localData = localSnapshot.val();
-                    const precioHora = localData.precio_hora; // Atributo en el local
+                    const precioHora = localData.costo_hora; // Atributo en el local
 
                     // Calcular el tiempo de alquiler en horas usando fecha_hora_inicio del alquiler
                     const horasAlquiler = this?.calcularHorasAlquiler(alquilerData.fecha_hora_inicio, fechaFin);
                     const precioFinal = precioHora * horasAlquiler;
-
+                    console.log("precio", localData)
                     // Actualizar el alquiler con la fecha fin, precio final y estado
                     await update(alquilerRef, {
                         fecha_fin: fechaFin,
