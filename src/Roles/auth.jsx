@@ -11,7 +11,7 @@ import PagePedido from "../Page/Pedids/PagePedido";
 import PageLocales from "../Page/Locales/pageLocales";
 import PagePerfil from "../Page/Perfil/PagePerfil";
 import Prueba from "../Page/AccesosDispositivos/prueba";
-import PageAccesoDevices from "../Page/AccesosDispositivos/PageAccesoDevices";
+//import PageAccesoDevices from "../Page/AccesosDispositivos/PageAccesoDevices";
 import ProveedorProvider from "../Page/Proveedores/context/ProveedorProvider";
 import { useSelector } from "react-redux";
 import Alquiler from "../Page/Arquileres/Alquiler";
