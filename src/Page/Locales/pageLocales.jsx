@@ -20,13 +20,13 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import classNames from 'classnames'; // Asegúrate de haber instalado 'classnames'
 
-import carroIcon from '../../imagenes/carro.png';
+import carroIcon from '../../Imagenes/carro.png';
 
 import styles from './PageLocales.module.css'; // Importa el módulo de estilos
 // Importar las imágenes según el estado
-import DisponibleImg from '../../imagenes/Disponible.webp';
-import OcupadoImg from '../../imagenes/Ocupado.webp';
-import MantenimientoImg from '../../imagenes/Mantenimiento.webp';
+import DisponibleImg from '../../Imagenes/Disponible.webp';
+import OcupadoImg from '../../Imagenes/Ocupado.webp';
+import MantenimientoImg from '../../Imagenes/Mantenimiento.webp';
 import { localService } from '../../Services/LocalesService';
 import { categoriaService } from '../../Services/CategoriaService';
 
