@@ -25,8 +25,8 @@ const Alquiler = () => {
     const toast = useRef(null);
     const [locales, setLocales] = useState([]);
     const [alquileres, setAlquileres] = useState([])
-    const getAllAlquileres = (espacio_id) => {
-        localService.obtenerAlquileresPorEspacio(espacio_id, (data) => { setAlquileres(data) })
+    const getAllAlquileres = async (espacio_id) => {
+        await localService.obtenerAlquileresPorEspacio(espacio_id, (data) => { setAlquileres(data) })
 
     }
     const [searchTerm, setSearchTerm] = useState('');
@@ -141,9 +141,9 @@ const Alquiler = () => {
         "placa_vehiculo": "",
         "usuario_id": ""
     })
-    const handleShowHistory = (rowData) => {
+    const handleShowHistory = async (rowData) => {
         setHistorialDialogVisible(true)
-        getAllAlquileres(rowData?.id)
+        await getAllAlquileres(rowData?.id)
         console.log("data-al", rowData?.id)
 
     }
@@ -154,8 +154,9 @@ const Alquiler = () => {
                 <Button
                     icon="pi pi-caret-right"
                     tooltip='Liberar'
-                    onClick={() => {setCrearEspaciosDialogVisible(true);setNuevoEspacio({...nuevoEspacio,espacio_id:rowData?.id});console.log("jj",rowData?.id)}}
+                    onClick={() => { setCrearEspaciosDialogVisible(true); setNuevoEspacio({ ...nuevoEspacio, espacio_id: rowData?.id }); console.log("jj", rowData?.id) }}
                     className="p-button-rounded  "
+                    disabled={!rowData?.disponibilidad}
                     style={{ marginLeft: '0.5em' }}
                 />
 
@@ -169,9 +170,9 @@ const Alquiler = () => {
             </div>
         );
     };
-    const handleFinalizarAlquiler=(rowData)=>{
-        console.log("alquiler",rowData)
-        localService?.finalizarAlquiler(rowData?.id,rowData?.espacio_id,newLocal?.id)
+    const handleFinalizarAlquiler = (rowData) => {
+        console.log("alquiler", rowData)
+        localService?.finalizarAlquiler(rowData?.id, rowData?.espacio_id, newLocal?.id)
     }
     const actionBodyTemplateAlquiler = (rowData) => {
         console.log("ess", rowData)
@@ -179,19 +180,20 @@ const Alquiler = () => {
             <div>
                 <Button
                     icon="pi pi-caret-right"
+                    disabled={rowData?.estado_alquiler == 2}
                     tooltip='Liberar'
-                    onClick={() => {handleFinalizarAlquiler(rowData)}}
+                    onClick={() => { handleFinalizarAlquiler(rowData) }}
                     className="p-button-rounded  "
                     style={{ marginLeft: '0.5em' }}
                 />
 
-                <Button
+                {/* <Button
                     icon="pi pi-trash"
                     tooltip='historial'
                     onClick={() => handleShowHistory(rowData)}
                     className="p-button-rounded p-button-outlined p-button-help"
                     style={{ marginLeft: '0.5em' }}
-                />
+                /> */}
             </div>
         );
     };
@@ -225,6 +227,8 @@ const Alquiler = () => {
     const handleSaveAlquiler = async () => {
         console.log("ddd", newLocal?.id)
         await localService?.crearAlquilerYActualizarEspacio(nuevoEspacio, nuevoEspacio?.espacio_id, newLocal?.id)
+        setCrearEspaciosDialogVisible(false);
+        setNuevoEspacio({ nombre: "", disponibilidad: "" })
     }
 
     return (
@@ -234,7 +238,7 @@ const Alquiler = () => {
                 <div className={styles.localesHeader}>
                     <h1 className={styles.localesTitle}>MIS ALQUILERES</h1>
                     <p className={styles.localesDescription}>
-                        A continuación se visualizan los Alquileres previamente creados para poder colocar las áreas que usted ha definido en cada uno de sus locales.
+                        A continuación se visualizan los Alquileres previamente creados para poder colocar los alquileres que usted ha definido en cada uno de sus locales.
                     </p>
                 </div>
 
@@ -283,11 +287,11 @@ const Alquiler = () => {
 
                                 <div className={styles.localesDetailsList}>
                                     <div className={styles.localesDetailItem}>
-                                        <span className={styles.localesDetailLabel}>Espacio Disponible:</span>
+                                        <span className={styles.localesDetailLabel}>Espacio Disponible:{local?.availableSpacesCount}</span>
 
                                     </div>
                                     <div className={styles.localesDetailItem}>
-                                        <span className={styles.localesDetailLabel}>Espacio Ocupado:</span>
+                                        <span className={styles.localesDetailLabel}>Espacio Ocupado:{local?.unavailableSpacesCount }</span>
 
                                     </div>
                                     <hr />
@@ -299,7 +303,7 @@ const Alquiler = () => {
                                             className="p-button-rounded p-button-outlined p-button-help"
                                             tooltip="Crear Área"
                                             tooltipOptions={{ position: 'top' }}
-                                            onClick={() => { getAllEspacios(local?.id); setAreaDialogVisible(true); setNewLocal(local);console.log("nw",local) }}// Abre el popup de Crear Área
+                                            onClick={() => { getAllEspacios(local?.id); setAreaDialogVisible(true); setNewLocal(local); console.log("nw", local) }}// Abre el popup de Crear Área
                                         />
                                     </div>
                                 </div>
@@ -311,7 +315,7 @@ const Alquiler = () => {
                 <Dialog
                     visible={areaDialogVisible}
                     style={{ width: '60vw' }}
-                    header="Crear Área"
+                    header="Gestionar Espacio"
                     modal
                     onHide={() => setAreaDialogVisible(false)}
                     className={styles.localesDialog} // Usar estilos existentes
@@ -320,15 +324,7 @@ const Alquiler = () => {
 
                     <div className={styles.areaDialogContent}>
                         {/* Botón "Crear Área" posicionado en la esquina superior derecha */}
-                        <div className={styles.areaDialogHeader}>
-                            <Button
-                                icon="pi pi-plus"
-                                onClick={() => setCrearEspaciosDialogVisible(true)}
-                                className="p-button-rounded p-button-success"
-                                tooltip="Crear Área"
-                                tooltipOptions={{ position: 'top' }}
-                            />
-                        </div>
+
 
                         {/* Tabla Vacía Centrada */}
                         <div className={styles.emptyTableContainer}>
@@ -432,12 +428,12 @@ const Alquiler = () => {
             <Dialog
                 visible={historialDialogVisible}
                 style={{ width: '95vw' }}
-                header="Crear Área"
+                header="Historial alquileres"
                 modal
                 onHide={() => setHistorialDialogVisible(false)}
                 className={styles.localesDialog} // Usar estilos existentes
             >
-                <p>A continuación se crean las Areas previamente para que usted defina en cada uno de los espacio.</p>
+                <p>A continuación se visualizara todas las reservas relacionas al espacio correspondiente</p>
 
                 <div className={styles.areaDialogContent}>
                     {/* Botón "Crear Área" posicionado en la esquina superior derecha */}
@@ -467,7 +463,13 @@ const Alquiler = () => {
                             <Column header="Cliente" field='nombre_persona' />
                             <Column header="Número documento" field='numero_documento' />
                             <Column header="Fecha fin" field="fecha_fin" body={rowData => rowData.fecha_fin ? rowData.fecha_fin : "---"} />
-                            <Column header="Precio Final" field="precio_final" body={rowData => rowData.precio_final ? rowData.precio_final : "---"} />
+                            <Column
+                                header="Fecha fin"
+                                field="fecha_fin"
+                                body={rowData => rowData.fecha_fin ? new Date(rowData.fecha_fin).toLocaleString('es-ES', {
+                                    day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit'
+                                }) : "---"}
+                            />
                             <Column header="Estado alquiler" body={(data) => (
                                 data?.estado_alquiler == 1 ? <span style={{ backgroundColor: "#5dd868", padding: 7, borderRadius: "20px", color: "#fff" }}>En proceso</span > : <span style={{ backgroundColor: "#f13737", padding: 7, borderRadius: "20px", color: "#fff" }}>Finalizado</span>
                             )} />
